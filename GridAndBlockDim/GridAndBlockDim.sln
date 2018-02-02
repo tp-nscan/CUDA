@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GridAndBlockDim", "GridAndBlockDim\GridAndBlockDim.vcxproj", "{9EB696BC-DCAD-4F6D-85F9-EA2D08F4E9ED}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox", "Sandbox\Sandbox.vcxproj", "{2A1D3E0D-4016-4907-8846-16BB92B46BE9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Texo", "Texo\Texo.vcxproj", "{1D5A8471-0217-429D-B866-A7C4E01F9DDE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rando", "Rando\Rando.vcxproj", "{CA5D3381-E223-4080-919A-D4FD1134EA81}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Isingo", "Isingo\Isingo.vcxproj", "{8F855E79-18D8-4C01-90B8-8C8CBE6C2CC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9EB696BC-DCAD-4F6D-85F9-EA2D08F4E9ED}.Debug|x64.ActiveCfg = Debug|x64
+		{9EB696BC-DCAD-4F6D-85F9-EA2D08F4E9ED}.Debug|x64.Build.0 = Debug|x64
+		{9EB696BC-DCAD-4F6D-85F9-EA2D08F4E9ED}.Debug|x86.ActiveCfg = Debug|x64
+		{9EB696BC-DCAD-4F6D-85F9-EA2D08F4E9ED}.Release|x64.ActiveCfg = Release|x64
+		{9EB696BC-DCAD-4F6D-85F9-EA2D08F4E9ED}.Release|x64.Build.0 = Release|x64
+		{9EB696BC-DCAD-4F6D-85F9-EA2D08F4E9ED}.Release|x86.ActiveCfg = Release|x64
+		{2A1D3E0D-4016-4907-8846-16BB92B46BE9}.Debug|x64.ActiveCfg = Debug|x64
+		{2A1D3E0D-4016-4907-8846-16BB92B46BE9}.Debug|x64.Build.0 = Debug|x64
+		{2A1D3E0D-4016-4907-8846-16BB92B46BE9}.Debug|x86.ActiveCfg = Debug|Win32
+		{2A1D3E0D-4016-4907-8846-16BB92B46BE9}.Debug|x86.Build.0 = Debug|Win32
+		{2A1D3E0D-4016-4907-8846-16BB92B46BE9}.Release|x64.ActiveCfg = Release|x64
+		{2A1D3E0D-4016-4907-8846-16BB92B46BE9}.Release|x64.Build.0 = Release|x64
+		{2A1D3E0D-4016-4907-8846-16BB92B46BE9}.Release|x86.ActiveCfg = Release|Win32
+		{2A1D3E0D-4016-4907-8846-16BB92B46BE9}.Release|x86.Build.0 = Release|Win32
+		{1D5A8471-0217-429D-B866-A7C4E01F9DDE}.Debug|x64.ActiveCfg = Debug|x64
+		{1D5A8471-0217-429D-B866-A7C4E01F9DDE}.Debug|x64.Build.0 = Debug|x64
+		{1D5A8471-0217-429D-B866-A7C4E01F9DDE}.Debug|x86.ActiveCfg = Debug|x64
+		{1D5A8471-0217-429D-B866-A7C4E01F9DDE}.Release|x64.ActiveCfg = Release|x64
+		{1D5A8471-0217-429D-B866-A7C4E01F9DDE}.Release|x64.Build.0 = Release|x64
+		{1D5A8471-0217-429D-B866-A7C4E01F9DDE}.Release|x86.ActiveCfg = Release|x64
+		{CA5D3381-E223-4080-919A-D4FD1134EA81}.Debug|x64.ActiveCfg = Debug|x64
+		{CA5D3381-E223-4080-919A-D4FD1134EA81}.Debug|x64.Build.0 = Debug|x64
+		{CA5D3381-E223-4080-919A-D4FD1134EA81}.Debug|x86.ActiveCfg = Debug|x64
+		{CA5D3381-E223-4080-919A-D4FD1134EA81}.Release|x64.ActiveCfg = Release|x64
+		{CA5D3381-E223-4080-919A-D4FD1134EA81}.Release|x64.Build.0 = Release|x64
+		{CA5D3381-E223-4080-919A-D4FD1134EA81}.Release|x86.ActiveCfg = Release|x64
+		{8F855E79-18D8-4C01-90B8-8C8CBE6C2CC6}.Debug|x64.ActiveCfg = Debug|x64
+		{8F855E79-18D8-4C01-90B8-8C8CBE6C2CC6}.Debug|x64.Build.0 = Debug|x64
+		{8F855E79-18D8-4C01-90B8-8C8CBE6C2CC6}.Debug|x86.ActiveCfg = Debug|x64
+		{8F855E79-18D8-4C01-90B8-8C8CBE6C2CC6}.Release|x64.ActiveCfg = Release|x64
+		{8F855E79-18D8-4C01-90B8-8C8CBE6C2CC6}.Release|x64.Build.0 = Release|x64
+		{8F855E79-18D8-4C01-90B8-8C8CBE6C2CC6}.Release|x86.ActiveCfg = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6AFF831-12EA-49E2-90F9-455E28B3E1E8}
+	EndGlobalSection
+EndGlobal
