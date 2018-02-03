@@ -9,11 +9,11 @@
 
 
 void RandBench();
-
+void RandCheck();
 
 int main()
 {
-	RandBench();
+	RandCheck();
 }
 
 
@@ -24,7 +24,6 @@ void RandBench()
 	data.threads = dim3(256);
 	data.seed = 123;
 
-	curandState *dev_rngs = data.dev_rngs;
 	cudaEvent_t     start, stop;
 	float totalTime = 0;
 	float frames = 0;
@@ -37,8 +36,7 @@ void RandBench()
 	float *host_rands;
 	float   elapsedTime;
 
-	cudaResult = Gpu_InitRNG(&dev_rngs, &data);
-
+	cudaResult = Gpu_InitRNG_1d(&data);
 
 	HANDLE_ERROR(cudaEventCreate(&start));
 	HANDLE_ERROR(cudaEventCreate(&stop));
@@ -47,7 +45,7 @@ void RandBench()
 
 	for (int i = 0; i < reps; i++) {
 
-		Gpu_UniformRandFloats(&dev_rands, &data, arrayLength);
+		Gpu_UniformRandFloats_1d(&dev_rands, &data, arrayLength);
 	}
 
 	HANDLE_ERROR(cudaEventRecord(stop, 0));
@@ -57,11 +55,15 @@ void RandBench()
 	printf("Uniform:  %3.1f ms\n", totalTime); // / data->frames);
 
 	 
+
+	data.threads = dim3(16,16);
+	cudaResult = Gpu_InitRNG_2d(&data);
+
 	HANDLE_ERROR(cudaEventRecord(start, 0));
 
 	for (int i = 0; i < reps; i++) {
 
-		Gpu_NormalRandFloats(&dev_rands, &data, arrayLength);
+		Gpu_UniformRandFloats_2d(&dev_rands, &data, arrayLength);
 	}
 
 	HANDLE_ERROR(cudaEventRecord(stop, 0));
@@ -76,5 +78,29 @@ void RandBench()
 	//Gpu_GetFloats(&host_rands, dev_rands, data.arrayLength);
 
 	//PrintFloatArray(host_rands, 10, data.arrayLength);
+
+}
+
+
+void RandCheck()
+{
+	RandData data;
+	data.blocks = dim3(4,4);
+	data.threads = dim3(4, 4);
+	data.seed = 123;
+
+	int arrayLength = 10000;
+	int reps = 100;
+
+	cudaError_t cudaResult = cudaSuccess;
+
+	float *dev_rands;
+	float *host_rands;
+
+	cudaResult = Gpu_InitRNG_2d(&data);
+	Gpu_NormalRandFloats_2d(&dev_rands, &data, arrayLength);
+	Gpu_GetFloats(&host_rands, dev_rands, arrayLength);
+
+	PrintFloatArray(host_rands, 100, arrayLength);
 
 }
