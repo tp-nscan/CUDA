@@ -87,13 +87,11 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <CudaCompile Include="..\..\common\PlyBlock.cu" />
+    <CudaCompile Include="..\..\common\Rando.cu" />
     <CudaCompile Include="..\..\common\TexUtils.cu" />
     <CudaCompile Include="Bazingo.cu" />
     <CudaCompile Include="Isingo.cu" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\common\DimStuff.h" />
-    <ClInclude Include="..\..\common\TexUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\common\DimStuff.cpp" />

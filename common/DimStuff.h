@@ -1,10 +1,10 @@
+#pragma once
 #include "cuda_runtime.h"
-#include <curand_kernel.h>
 #include <stdlib.h>
 
 
-#ifndef DIMSTUFF_H_   /* Include guard */
-#define DIMSTUFF_H_
+//#ifndef DIMSTUFF_H_   /* Include guard */
+//#define DIMSTUFF_H_
 
 
 
@@ -26,8 +26,6 @@
 //	}
 //}
 
-
-
 dim3 *dim3Ctr(int x, int y = 1, int z = 1);
 dim3 *dim3Unit();
 int dim3Vol(dim3 *a);
@@ -45,4 +43,4 @@ void PrintIntArray(int *aa, int width, int length);
 float *RndFloat0to1(int arraySize);
 cudaError_t Gpu_GetFloats(float **host_floats, float *dev_floats, int float_ct);
 
-#endif // DIMSTUFF_H_
+//#endif // DIMSTUFF_H_

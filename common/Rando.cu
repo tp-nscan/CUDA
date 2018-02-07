@@ -1,9 +1,9 @@
-#include "common.h"
-#include "DimStuff.h"
+#include <stdio.h>
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
-#include <stdio.h>
 #include <curand_kernel.h>
+#include "common.h"
+#include "DimStuff.h"
 #include "Rando.h"
 
 __global__ void initRNG_1d(curandState *const rngStates, const unsigned int seed)
@@ -75,11 +75,15 @@ __global__ void gen_normal_1d(float *const results, curandState *const rngStates
 __global__ void gen_normal_2d(float *const results, curandState *const rngStates,
 	const unsigned int numRands)
 {
-	unsigned int tid =
-		blockIdx.x * gridDim.y * blockDim.x * blockDim.y +
-		blockIdx.y * blockDim.x * blockDim.y +
-		threadIdx.x * blockDim.y +
-		threadIdx.y;
+	int x = threadIdx.x + blockIdx.x * blockDim.x;
+	int y = threadIdx.y + blockIdx.y * blockDim.y;
+	int tid = x + y * blockDim.x * gridDim.x;
+
+	//unsigned int tid =
+	//	blockIdx.x * gridDim.y * blockDim.x * blockDim.y +
+	//	blockIdx.y * blockDim.x * blockDim.y +
+	//	threadIdx.x * blockDim.y +
+	//	threadIdx.y;
 	unsigned int step = gridDim.x * gridDim.y * blockDim.x * blockDim.y;
 
 	for (unsigned int i = tid; i < numRands; i += step)

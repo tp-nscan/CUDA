@@ -546,6 +546,7 @@ C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\um\imm.h
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\um\ime_cmodes.h
 c:\users\tom\source\repos\cuda\gridandblockdim\rando\../../common/DimStuff.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\cuda_runtime.h
+c:\users\tom\source\repos\cuda\gridandblockdim\rando\../../common/Rando.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\curand_kernel.h
 c:\program files\nvidia gpu computing toolkit\cuda\v9.0\include\curand.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\cuda_runtime.h
@@ -581,8 +582,6 @@ c:\program files\nvidia gpu computing toolkit\cuda\v9.0\include\curand_discrete2
 c:\program files\nvidia gpu computing toolkit\cuda\v9.0\include\curand_mrg32k3a.h
 c:\program files\nvidia gpu computing toolkit\cuda\v9.0\include\curand_mtgp32_kernel.h
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\math.h
-c:\users\tom\source\repos\cuda\gridandblockdim\rando\../../common/Rando.h
-C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\curand_kernel.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\cuda_runtime.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\device_launch_parameters.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\cuda_runtime.h

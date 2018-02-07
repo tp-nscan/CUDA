@@ -1,0 +1,14 @@
+﻿  Sb.cpp
+Sb.cpp(107): error C2059: syntax error: '('
+Sb.cpp(108): error C2146: syntax error: missing ';' before identifier 'yab'
+Sb.cpp(108): error C2275: 'Anim': illegal use of this type as an expression
+Sb.cpp(108): error C2039: 'yab': is not a member of 'Anim'
+  Sb.cpp(82): note: see declaration of 'Anim'
+Sb.cpp(108): error C2039: 'bab': is not a member of 'Anim'
+  Sb.cpp(82): note: see declaration of 'Anim'
+Sb.cpp(109): error C2065: 'yab': undeclared identifier
+Sb.cpp(109): error C2228: left of '.width' must have class/struct/union
+  Sb.cpp(109): note: type is 'unknown-type'
+Sb.cpp(109): warning C4473: 'printf' : not enough arguments passed for format string
+  Sb.cpp(109): note: placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+  Sb.cpp(109): note: the missing variadic argument 1 is required by format string '%d'
