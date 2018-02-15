@@ -1,0 +1,30 @@
+﻿  
+  C:\Users\Tom\source\repos\CUDA\LB\LB>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64" -x cu  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile   -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\kernel.cu.obj "C:\Users\Tom\source\repos\CUDA\LB\LB\kernel.cu" -clean 
+  kernel.cu
+  Compiling CUDA source file kernel.cu...
+  
+  C:\Users\Tom\source\repos\CUDA\LB\LB>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64" -x cu  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\kernel.cu.obj "C:\Users\Tom\source\repos\CUDA\LB\LB\kernel.cu" 
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\type_traits(504): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\type_traits(505): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\type_traits(506): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\type_traits(538): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\type_traits(1043): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\type_traits(1558): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\type_traits(2371): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\type_traits(2371): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\xutility(543): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\xtr1common(58): error : class "std::enable_if<<error-constant>, int>" has no member "type"
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\xutility(3135): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\xutility(3662): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\xtr1common(58): error : class "std::enable_if<<error-constant>, void>" has no member "type"
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\xmemory0(390): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\xmemory0(1002): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\xmemory0(1322): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\xstring(1718): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\xutility(298): error : expression must have a constant value
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\xstring(1780): error : more than one instance of overloaded function "std::_Deallocate_plain" matches the argument list:
+C:/Users/Tom/source/repos/CUDA/LB/LB/kernel.cu(109): warning : function "__shfl_down(int, unsigned int, int)"
+C:/Users/Tom/source/repos/CUDA/LB/LB/kernel.cu(109): warning : function "__shfl_down(double, unsigned int, int)"
+C:/Users/Tom/source/repos/CUDA/LB/LB/kernel.cu(109): warning : function "__shfl_down(unsigned int, unsigned int, int)"
+  kernel.cu
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\BuildCustomizations\CUDA 9.0.targets(707,9): error MSB3721: The command ""C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x64" -x cu  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\kernel.cu.obj "C:\Users\Tom\source\repos\CUDA\LB\LB\kernel.cu"" exited with code 1.

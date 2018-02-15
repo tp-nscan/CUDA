@@ -1,49 +1,13 @@
-#include "common.h"
-#include "cuda_runtime.h"
-#include "device_launch_parameters.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <curand_kernel.h>
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
+#include "common.h"
+#include "Utils.h"
+#include "BlockUtils.h"
 
-dim3 *dim3Ctr(int x, int y = 1, int z = 1)
-{
-	dim3 *a;
-	a = (dim3 *)malloc(sizeof(dim3));
-	a->x = x;
-	a->y = y;
-	a->z = z;
-	return a;
-}
 
-dim3 *dim3Unit()
-{
-	dim3 *a;
-	a = (dim3 *)malloc(sizeof(dim3));
-	a->x = 1;
-	a->y = 1;
-	a->z = 1;
-	return a;
-}
-
-int dim3Vol(dim3 *a)
-{
-	return a->x * a->y * a->z;
-}
-
-void printDim3(dim3 *yow)
-{
-	printf("yow: {%d, %d, %d}", yow->x, yow->y, yow->z);
-}
-
-int *IntArray(int length, int first=0, int step=0)
-{
-	int *av = (int *)malloc(sizeof(int) * length);
-	for (int i = 0; i < length; i++)
-	{
-		av[i] = first + step * i;
-	}
-	return av;
-}
 
 //Copies dev_floats to host_floats
 cudaError_t Gpu_GetFloats(float **host_floats, float *dev_floats, int float_ct)
@@ -153,49 +117,4 @@ int *Cpu_R2byR1(dim3 *gridSize, int *av, int *bv)
 		c[i] = av[i] + bv[i];
 	}
 	return c;
-}
-
-bool CompIntArrays(int *a, int *b, int length)
-{
-	for (int i = 0; i < length; i++)
-	{
-		if (a[i] != b[i]) return false;
-	}
-	return true;
-}
-
-bool CompFloatArrays(float *a, float *b, int length)
-{
-	for (int i = 0; i < length; i++)
-	{
-		if (a[i] != b[i]) return false;
-	}
-	return true;
-}
-
-void PrintFloatArray(float *aa, int width, int length)
-{
-	for (int i = 0; i < length; i++) {
-		printf("%3.3f ", aa[i]);
-		if ((i>0) && ((i + 1) % width == 0)) printf("\n");
-	}
-	printf("\n");
-}
-
-void PrintIntArray(int *aa, int width, int length)
-{
-	for (int i = 0; i < length; i++) {
-		printf("%d ", aa[i]);
-		if ((i>0) && ((i+1) % width == 0)) printf("\n");
-	}
-	printf("\n");
-}
-
-float *RndFloat0to1(int arraySize)
-{
-	float *temp = (float*)malloc(arraySize * sizeof(float));
-	for (int i = 0; i<arraySize; i++) {
-		temp[i] = (float)rand() / (float)(RAND_MAX);
-	}
-	return temp;
 }

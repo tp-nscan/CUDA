@@ -30,9 +30,11 @@ void MakePlyBlock(PlyBlock **out, unsigned int width, unsigned int seed)
 	pbRet->texOut = TexObjFloat1D(pbRet->dev_outSrc, plyMemSize);
 	//pbRet->texConst = TexObjFloat1D(pbRet->dev_constSrc, plyMemSize);
 
-	int chop = 64;
+	int chop = 16;
 	randData->seed = seed;
 	randData->blocks = dim3(width/chop, width/chop);
-	randData->threads = dim3(chop/4, chop/4);
+	randData->threads = dim3(chop, chop);
+	//randData->blocks = dim3(32,32);
+	//randData->threads = dim3(16,16);
 	CHECK(Gpu_InitRNG_2d(randData));
 }
