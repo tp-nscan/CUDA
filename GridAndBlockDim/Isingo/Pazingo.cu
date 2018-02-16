@@ -20,6 +20,7 @@ struct AppBlock {
 	float           totalTime;
 	float           frames;
 	float           speed;
+	float           noise;
 	int				mag;
 	PlyBlock *plyBlock;
 };
@@ -114,7 +115,7 @@ __global__ void float_to_color2(unsigned char *optr, const float *outSrc, int ma
 }
 
 
-void MakeAppBlock(AppBlock **out, unsigned int width, unsigned int seed, float speed, int mag)
+void MakeAppBlock(AppBlock **out, unsigned int width, unsigned int seed, float speed, float noise, int mag)
 {
 	AppBlock *appBlock = (AppBlock *)malloc(sizeof(AppBlock));
 	*out = appBlock;
@@ -123,6 +124,7 @@ void MakeAppBlock(AppBlock **out, unsigned int width, unsigned int seed, float s
 	unsigned int plyMemSize = appBlock->plyBlock->area * sizeof(float);
 
 	appBlock->speed = speed;
+	appBlock->noise = noise;
 	appBlock->mag = mag;
 	appBlock->totalTime = 0;
 	appBlock->frames = 0;
@@ -134,6 +136,13 @@ void MakeAppBlock(AppBlock **out, unsigned int width, unsigned int seed, float s
 	//HANDLE_ERROR(cudaMemcpy(appBlock->plyBlock->dev_constSrc, temp, plyMemSize, cudaMemcpyHostToDevice));
 	HANDLE_ERROR(cudaMemcpy(appBlock->plyBlock->dev_inSrc, temp, plyMemSize, cudaMemcpyHostToDevice));
 	free(temp);
+}
+
+void MakeControlBlock(ControlBlock **out, unsigned int width, unsigned int seed, float speed, int mag)
+{
+	ControlBlock *controlBlock = (ControlBlock *)malloc(sizeof(ControlBlock));
+	//controlBlock->dataBlock
+	*out = controlBlock;
 }
 
 int main(int argc, const char **argv)
@@ -166,7 +175,7 @@ int main(int argc, const char **argv)
 	}
 
 	AppBlock *appBlock;
-	MakeAppBlock(&appBlock, gridWidth, 1283, speed, mag);
+	MakeAppBlock(&appBlock, gridWidth, 1283, speed, noise, mag);
 	CPUAnimBitmap cPUAnimBitmap(imageWidth, imageWidth, appBlock);
 	appBlock->cPUAnimBitmap = &cPUAnimBitmap;
 	HANDLE_ERROR(cudaMalloc((void**)&appBlock->output_bitmap, cPUAnimBitmap.image_size()));
@@ -301,9 +310,9 @@ void anim_gpu(AppBlock *appBlock, int ticks) {
 		plySize.x = appBlock->plyBlock->width;
 		plySize.y = appBlock->plyBlock->width;
 
-		//loco_kernel << <simBlocks, simThreads >> >(
-		//	out, dstOut, *appBlock->plyBlock->texIn, *appBlock->plyBlock->texOut,
-		//	plySize, appBlock->speed*0.5);
+		loco_kernel << <simBlocks, simThreads >> >(
+			out, dstOut, *appBlock->plyBlock->texIn, *appBlock->plyBlock->texOut,
+			plySize, appBlock->speed);
 
 		//HANDLE_ERROR(cudaDeviceSynchronize());
 		//dim3    blocks2(32,32);
@@ -311,7 +320,7 @@ void anim_gpu(AppBlock *appBlock, int ticks) {
 
 		noiseTrimKernelR << <simBlocks, simThreads >> >(
 			out, appBlock->plyBlock->randData->dev_curandStates,
-			appBlock->speed);
+			appBlock->noise);
 
 		HANDLE_ERROR(cudaDeviceSynchronize());
 

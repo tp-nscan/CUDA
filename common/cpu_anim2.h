@@ -28,7 +28,7 @@ struct ControlBlock {
 struct CPUAnimBitmap {
     unsigned char    *pixels;
     int     width, height;
-    void    *dataBlock;
+	void    *dataBlock;
     void (*fAnim)(void*,int);
     void (*animExit)(void*);
     void (*clickDrag)(void*,int,int,int,int);
@@ -106,28 +106,26 @@ struct CPUAnimBitmap {
     }
 
     // static method used for glut callbacks
-    //static void Key(unsigned char key, int x, int y) {
-    //    switch (key) {
-    //        case 27:
-    //            CPUAnimBitmap*   bitmap = *(get_bitmap_ptr());
-    //            bitmap->animExit( bitmap->dataBlock );
-    //            //delete bitmap;
-    //            exit(0);
-    //    }
-    //}
+    static void Key(unsigned char key, int x, int y) {
+        switch (key) {
+            case 27:
+                CPUAnimBitmap*   bitmap = *(get_bitmap_ptr());
+                bitmap->animExit( bitmap->dataBlock );
+                //delete bitmap;
+                exit(0);
+        }
+    }
 
-	static void Key(unsigned char key, int x, int y) {
-		if (key == 27) {
-			CPUAnimBitmap * bitmap = *(get_bitmap_ptr());
-			bitmap->animExit(bitmap->dataBlock);
-			//delete bitmap;
-			exit(0);
-		}
+	//static void Key(unsigned char key, int x, int y) {
+	//	if (key == 27) {
+	//		CPUAnimBitmap * bitmap = *(get_bitmap_ptr());
+	//		bitmap->animExit(bitmap->dataBlock->dataBlock);
+	//		//delete bitmap;
+	//		exit(0);
+	//	}
 
-	}
+	//}
 
-
-    // static method used for glut callbacks
     static void Draw( void ) {
         CPUAnimBitmap*   bitmap = *(get_bitmap_ptr());
         glClearColor( 0.0, 0.0, 0.0, 1.0 );
