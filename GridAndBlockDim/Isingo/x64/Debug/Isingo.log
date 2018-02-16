@@ -28,22 +28,22 @@
   C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu -rdc=true -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\BlockUtils.cu.obj "C:\Users\Tom\source\repos\CUDA\common\BlockUtils.cu" 
   
   C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu -rdc=true -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\PlyBlock.cu.obj "C:\Users\Tom\source\repos\CUDA\common\PlyBlock.cu" 
-  Compiling CUDA source file Bazingo.cu...
+  Compiling CUDA source file Isingo.cu...
   Compiling CUDA source file ..\..\common\TexUtils.cu...
+  Compiling CUDA source file Bazingo.cu...
   Compiling CUDA source file ..\..\common\Rando.cu...
   Compiling CUDA source file ..\..\common\Utils.cu...
-  Compiling CUDA source file Isingo.cu...
   Compiling CUDA source file Pazingo.cu...
   
   C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu -rdc=true -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\TexUtils.cu.obj "C:\Users\Tom\source\repos\CUDA\common\TexUtils.cu" 
   
-  C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu -rdc=true -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Utils.cu.obj "C:\Users\Tom\source\repos\CUDA\common\Utils.cu" 
-  
   C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu -rdc=true -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Isingo.cu.obj "C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo\Isingo.cu" 
   
-  C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu -rdc=true -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Bazingo.cu.obj "C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo\Bazingo.cu" 
-  
   C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu -rdc=true -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Rando.cu.obj "C:\Users\Tom\source\repos\CUDA\common\Rando.cu" 
+  
+  C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu -rdc=true -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Utils.cu.obj "C:\Users\Tom\source\repos\CUDA\common\Utils.cu" 
+  
+  C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu -rdc=true -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Bazingo.cu.obj "C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo\Bazingo.cu" 
 C:/Users/Tom/source/repos/CUDA/common/PlyBlock.cu(23): warning : variable "cudaResult" was declared but never referenced
   
   C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu -rdc=true -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Pazingo.cu.obj "C:\Users\Tom\source\repos\CUDA\GridAndBlockDim\Isingo\Pazingo.cu" 
@@ -55,20 +55,22 @@ C:/Users/Tom/source/repos/CUDA/common/Rando.cu(271): warning : expression has no
 C:/Users/Tom/source/repos/CUDA/common/PlyBlock.cu(23): warning : variable "cudaResult" was declared but never referenced
   PlyBlock.cu
 c:\users\tom\source\repos\cuda\gridandblockdim\isingo\../../common/cpu_anim2.h(64): warning : conversion from a string literal to "char *" is deprecated
-C:/Users/Tom/source/repos/CUDA/GridAndBlockDim/Isingo/Pazingo.cu(299): warning : variable "in" was set but never used
-C:/Users/Tom/source/repos/CUDA/GridAndBlockDim/Isingo/Pazingo.cu(335): warning : variable "r" was declared but never referenced
+C:/Users/Tom/source/repos/CUDA/GridAndBlockDim/Isingo/Pazingo.cu(161): warning : variable "imageWidth" was set but never used
+C:/Users/Tom/source/repos/CUDA/GridAndBlockDim/Isingo/Pazingo.cu(309): warning : variable "in" was set but never used
+C:/Users/Tom/source/repos/CUDA/GridAndBlockDim/Isingo/Pazingo.cu(345): warning : variable "r" was declared but never referenced
   Bazingo.cu
   Isingo.cu
-  Utils.cu
   TexUtils.cu
+  Utils.cu
 C:/Users/Tom/source/repos/CUDA/common/Rando.cu(178): warning : expression has no effect
 C:/Users/Tom/source/repos/CUDA/common/Rando.cu(209): warning : expression has no effect
 C:/Users/Tom/source/repos/CUDA/common/Rando.cu(241): warning : expression has no effect
 C:/Users/Tom/source/repos/CUDA/common/Rando.cu(271): warning : expression has no effect
   Rando.cu
 c:\users\tom\source\repos\cuda\gridandblockdim\isingo\../../common/cpu_anim2.h(64): warning : conversion from a string literal to "char *" is deprecated
-C:/Users/Tom/source/repos/CUDA/GridAndBlockDim/Isingo/Pazingo.cu(299): warning : variable "in" was set but never used
-C:/Users/Tom/source/repos/CUDA/GridAndBlockDim/Isingo/Pazingo.cu(335): warning : variable "r" was declared but never referenced
+C:/Users/Tom/source/repos/CUDA/GridAndBlockDim/Isingo/Pazingo.cu(161): warning : variable "imageWidth" was set but never used
+C:/Users/Tom/source/repos/CUDA/GridAndBlockDim/Isingo/Pazingo.cu(309): warning : variable "in" was set but never used
+C:/Users/Tom/source/repos/CUDA/GridAndBlockDim/Isingo/Pazingo.cu(345): warning : variable "r" was declared but never referenced
   Pazingo.cu
   DimStuff.cpp
   

@@ -131,7 +131,17 @@ void MakeAppBlock(AppBlock **out, unsigned int width, unsigned int seed, float s
 	HANDLE_ERROR(cudaEventCreate(&appBlock->start));
 	HANDLE_ERROR(cudaEventCreate(&appBlock->stop));
 
-	// intialize the constant data
+
+	CPUAnimBitmap *cbm = (CPUAnimBitmap *)malloc(sizeof(CPUAnimBitmap));
+	cbm->width = width;
+	cbm->height = width;
+	cbm->dataBlock = appBlock;
+	cbm->pixels = new unsigned char[cbm->width * cbm->height * 4];
+	cbm->clickDrag = NULL;
+
+	appBlock->cPUAnimBitmap = cbm;
+	HANDLE_ERROR(cudaMalloc((void**)&appBlock->output_bitmap, cbm->image_size()));
+
 	float *temp = RndFloat0to1(width*width);
 	//HANDLE_ERROR(cudaMemcpy(appBlock->plyBlock->dev_constSrc, temp, plyMemSize, cudaMemcpyHostToDevice));
 	HANDLE_ERROR(cudaMemcpy(appBlock->plyBlock->dev_inSrc, temp, plyMemSize, cudaMemcpyHostToDevice));
@@ -176,11 +186,11 @@ int main(int argc, const char **argv)
 
 	AppBlock *appBlock;
 	MakeAppBlock(&appBlock, gridWidth, 1283, speed, noise, mag);
-	CPUAnimBitmap cPUAnimBitmap(imageWidth, imageWidth, appBlock);
-	appBlock->cPUAnimBitmap = &cPUAnimBitmap;
-	HANDLE_ERROR(cudaMalloc((void**)&appBlock->output_bitmap, cPUAnimBitmap.image_size()));
+	//CPUAnimBitmap cPUAnimBitmap(imageWidth, imageWidth, appBlock);
+	//appBlock->cPUAnimBitmap = &cPUAnimBitmap;
+	//HANDLE_ERROR(cudaMalloc((void**)&appBlock->output_bitmap, cPUAnimBitmap.image_size()));
 
-	cPUAnimBitmap.anim_and_exit((void(*)(void*, int))anim_gpu,
+	appBlock->cPUAnimBitmap->anim_and_exit((void(*)(void*, int))anim_gpu,
 		(void(*)(void*))anim_exit);
 
 }
