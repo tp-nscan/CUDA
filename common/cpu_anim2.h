@@ -22,7 +22,7 @@
 #include <iostream>
 
 struct ControlBlock {
-	void    *dataBlock;
+	void    *appBlock;
 };
 
 struct CPUAnimBitmap {

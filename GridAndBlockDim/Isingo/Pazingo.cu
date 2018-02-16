@@ -143,15 +143,17 @@ void MakeAppBlock(AppBlock **out, unsigned int width, unsigned int seed, float s
 	HANDLE_ERROR(cudaMalloc((void**)&appBlock->output_bitmap, cbm->image_size()));
 
 	float *temp = RndFloat0to1(width*width);
-	//HANDLE_ERROR(cudaMemcpy(appBlock->plyBlock->dev_constSrc, temp, plyMemSize, cudaMemcpyHostToDevice));
 	HANDLE_ERROR(cudaMemcpy(appBlock->plyBlock->dev_inSrc, temp, plyMemSize, cudaMemcpyHostToDevice));
 	free(temp);
 }
 
-void MakeControlBlock(ControlBlock **out, unsigned int width, unsigned int seed, float speed, int mag)
+void MakeControlBlock(ControlBlock **out, unsigned int width, unsigned int seed, float speed, float noise, int mag)
 {
 	ControlBlock *controlBlock = (ControlBlock *)malloc(sizeof(ControlBlock));
-	//controlBlock->dataBlock
+
+	AppBlock *appBlock;
+	MakeAppBlock(&appBlock, width, seed, speed, noise, mag);
+	controlBlock->appBlock = appBlock;
 	*out = controlBlock;
 }
 
@@ -184,13 +186,10 @@ int main(int argc, const char **argv)
 		mag = getCmdLineArgumentInt(argc, (const char **)argv, "mag");
 	}
 
-	AppBlock *appBlock;
-	MakeAppBlock(&appBlock, gridWidth, 1283, speed, noise, mag);
-	//CPUAnimBitmap cPUAnimBitmap(imageWidth, imageWidth, appBlock);
-	//appBlock->cPUAnimBitmap = &cPUAnimBitmap;
-	//HANDLE_ERROR(cudaMalloc((void**)&appBlock->output_bitmap, cPUAnimBitmap.image_size()));
+	ControlBlock *controlBlock;
+	MakeControlBlock(&controlBlock, gridWidth, 1283, speed, noise, mag);
 
-	appBlock->cPUAnimBitmap->anim_and_exit((void(*)(void*, int))anim_gpu,
+	((AppBlock *)controlBlock->appBlock)->cPUAnimBitmap->anim_and_exit((void(*)(void*, int))anim_gpu,
 		(void(*)(void*))anim_exit);
 
 }
