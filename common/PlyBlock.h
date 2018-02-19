@@ -12,13 +12,15 @@ struct PlyBlock {
 
 	float           *dev_inSrc;
 	float           *dev_outSrc;
-	float           *dev_constSrc;
 
 	cudaTextureObject_t *texIn;
 	cudaTextureObject_t *texOut;
-	cudaTextureObject_t *texConst;
 
 	RandData *randData;
 };
 
+int ThreadChop2d(int length);
+
 void MakePlyBlock(PlyBlock **out, unsigned int width, unsigned int seed);
+
+void FreePlyBlock(PlyBlock *plyBlock);

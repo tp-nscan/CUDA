@@ -92,6 +92,7 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <CudaCompile Include="..\..\common\BlockUtils.cu" />
+    <CudaCompile Include="..\..\common\GridPlot.cu" />
     <CudaCompile Include="..\..\common\PlyBlock.cu" />
     <CudaCompile Include="..\..\common\Rando.cu" />
     <CudaCompile Include="..\..\common\TexUtils.cu" />

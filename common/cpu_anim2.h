@@ -18,33 +18,66 @@
 #define __CPU_ANIM_H__
 
 #include "gl_helper.h"
-
 #include <iostream>
+
+struct CPUAnimBitmap;
 
 struct ControlBlock {
 	void    *appBlock;
+	char command[20];
+	unsigned char   *output_bitmap;
+	CPUAnimBitmap   *cPUAnimBitmap;
 };
 
 struct CPUAnimBitmap {
     unsigned char    *pixels;
     int     width, height;
-	void    *dataBlock;
+	ControlBlock    *controlBlock;
     void (*fAnim)(void*,int);
     void (*animExit)(void*);
     void (*clickDrag)(void*,int,int,int,int);
     int     dragStartX, dragStartY;
+	char commandBuff[20];
 
-    CPUAnimBitmap( int w, int h, void *d = NULL ) {
-        width = w;
-        height = h;
-        pixels = new unsigned char[width * height * 4];
-        dataBlock = d;
-        clickDrag = NULL;
+    CPUAnimBitmap() {
     }
+
+	void Init(int width, ControlBlock *cb)
+	{
+		controlBlock = cb;
+		CPUAnimBitmap**   cpBm = get_bitmap_ptr();
+		*cpBm = this;
+		cb->cPUAnimBitmap = this;
+		this->width = width;
+		this->height = width;
+		pixels = new unsigned char[width * height * 4];
+		clickDrag = NULL;
+		ClearCommandBuff();
+	}
 
     ~CPUAnimBitmap() {
         delete [] pixels;
     }
+
+	void SubmitCommand() {
+
+		strcpy_s(controlBlock->command, 20, commandBuff);
+		commandBuff[0] = '\0';
+	}
+
+	void ClearCommand() {
+		controlBlock->command[0] = '\0';
+	}
+
+	void ClearCommandBuff() {
+		commandBuff[0] = '\0';
+	}
+
+	void AppendCharToCommandBuff(char c) {
+		int curLen = strlen(commandBuff);
+		commandBuff[curLen] = c;
+		commandBuff[curLen + 1] = '\0';
+	}
 
     unsigned char* get_ptr( void ) const   { return pixels; }
     long image_size( void ) const { return width * height * 4; }
@@ -54,8 +87,7 @@ struct CPUAnimBitmap {
     }
 
     void anim_and_exit( void (*f)(void*,int), void(*e)(void*) ) {
-        CPUAnimBitmap**   bitmap = get_bitmap_ptr();
-        *bitmap = this;
+
         fAnim = f;
         animExit = e;
         // a bug in the Windows GLUT implementation prevents us from
@@ -89,7 +121,7 @@ struct CPUAnimBitmap {
                 bitmap->dragStartX = mx;
                 bitmap->dragStartY = my;
             } else if (state == GLUT_UP) {
-                bitmap->clickDrag( bitmap->dataBlock,
+                bitmap->clickDrag( bitmap->controlBlock,
                                    bitmap->dragStartX,
                                    bitmap->dragStartY,
                                    mx, my );
@@ -101,30 +133,36 @@ struct CPUAnimBitmap {
     static void idle_func( void ) {
         static int ticks = 1;
         CPUAnimBitmap*   bitmap = *(get_bitmap_ptr());
-        bitmap->fAnim( bitmap->dataBlock, ticks++ );
+        bitmap->fAnim( bitmap->controlBlock, ticks++ );
         glutPostRedisplay();
     }
 
     // static method used for glut callbacks
-    static void Key(unsigned char key, int x, int y) {
-        switch (key) {
-            case 27:
-                CPUAnimBitmap*   bitmap = *(get_bitmap_ptr());
-                bitmap->animExit( bitmap->dataBlock );
-                //delete bitmap;
-                exit(0);
-        }
-    }
+    //static void Key(unsigned char key, int x, int y) {
+    //    switch (key) {
+    //        case 27:
+    //            CPUAnimBitmap*   bitmap = *(get_bitmap_ptr());
+    //            bitmap->animExit( bitmap->controlBlock);
+    //            //delete bitmap;
+    //            exit(0);
+    //    }
+    //}
 
-	//static void Key(unsigned char key, int x, int y) {
-	//	if (key == 27) {
-	//		CPUAnimBitmap * bitmap = *(get_bitmap_ptr());
-	//		bitmap->animExit(bitmap->dataBlock->dataBlock);
-	//		//delete bitmap;
-	//		exit(0);
-	//	}
-
-	//}
+	static void Key(unsigned char key, int x, int y) {
+		CPUAnimBitmap *cPUAnimBitmap = *(get_bitmap_ptr());
+		ControlBlock *controlBlock = cPUAnimBitmap->controlBlock;
+		if (key == 27) {
+			cPUAnimBitmap->animExit(controlBlock);
+			exit(0);
+		}
+		if (key == 13) {
+			cPUAnimBitmap->SubmitCommand();
+		}
+		else
+		{
+			cPUAnimBitmap->AppendCharToCommandBuff(key);
+		}
+	}
 
     static void Draw( void ) {
         CPUAnimBitmap*   bitmap = *(get_bitmap_ptr());

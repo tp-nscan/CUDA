@@ -7,6 +7,7 @@
 #include "BlockUtils.h"
 #include "Rando.h"
 
+
 __global__ void initRNG_1d(curandState *const rngStates, const unsigned int seed)
 {
 	// Determine thread ID
@@ -139,11 +140,8 @@ Error:
 cudaError_t Gpu_InitRNG_2d(RandData *randData)
 {
 	cudaError_t cudaStatus = cudaSuccess;
-	CHECK_G(cudaSetDevice(0));
 
-	curandState *dev_rngens;
-	CHECK_G(cudaMalloc((void**)&dev_rngens, dim3Vol(&randData->blocks) * dim3Vol(&randData->threads) * sizeof(curandState)));
-	randData->dev_curandStates = dev_rngens;
+	CHECK_G(cudaMalloc((void**)&randData->dev_curandStates, dim3Vol(&randData->blocks) * dim3Vol(&randData->threads) * sizeof(curandState)));
 
 	initRNG_2d << <randData->blocks, randData->threads >> >(randData->dev_curandStates, randData->seed);
 
@@ -163,7 +161,6 @@ Error:
 }
 
 
-// creates and fills a device pointer with the curandStates
 cudaError_t Gpu_UniformRandFloats_1d(float **dev_rands, RandData *randData, int numRands)
 {
 	cudaError_t cudaStatus = cudaSuccess;
