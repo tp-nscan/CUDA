@@ -3,14 +3,8 @@
 #include <stdio.h>
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
+#include "cpu_anim2.h"
 
-struct GridPlot
-{
-	unsigned int				 zoom;
-	unsigned int				 imageWidth;
-	unsigned int              xStart;
-	unsigned int              yStart;
-};
 
 void MakeGridPlot(GridPlot **out, int zoom, int imageWidth, int xStart, int yStart);
 

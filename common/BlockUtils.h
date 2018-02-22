@@ -6,6 +6,7 @@ dim3 *dim3Ctr(int x, int y = 1, int z = 1);
 dim3 *dim3Unit();
 int dim3Vol(dim3 *a);
 void printDim3(dim3 *yow);
+int ThreadChop2d(int width);
 
 __device__ __inline__ int2 NodeInTilePos()
 {

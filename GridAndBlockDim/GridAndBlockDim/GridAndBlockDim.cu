@@ -1,6 +1,5 @@
-
 #include "../../common/common.h"
-#include "../../common/DimStuff.h"
+#include "../../common/CudaGeneralFunc.h"
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 #include <stdlib.h>

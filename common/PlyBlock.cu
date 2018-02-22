@@ -4,22 +4,11 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 #include "common.h"
+#include "BlockUtils.h"
 #include "PlyBlock.h"
 #include "Rando.h"
 #include "TexUtils.h"
 
-int ThreadChop2d(int width)
-{
-	if (width > 255)
-		return 16;
-	if (width > 63)
-		return 8;
-	if (width > 15)
-		return 4;
-	if (width > 3)
-		return 2;
-	return 1;
-}
 
 void MakePlyBlock(PlyBlock **out, unsigned int plyWidth, unsigned int seed)
 {

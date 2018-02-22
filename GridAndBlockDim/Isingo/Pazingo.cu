@@ -14,7 +14,6 @@
 #include "../../common/GridPlot.h"
 
 
-
 struct AppBlock {
 	cudaEvent_t      start, stop;
 	float            totalTime;
@@ -22,13 +21,11 @@ struct AppBlock {
 	float            speed;
 	float            noise;
 	int              threadChop;
-	GridPlot        *gridPlot;
 	float           *startingData;
 	PlyBlock        *plyBlock;
 };
 
-void MakeControlBlock(ControlBlock **out, GridPlot *gridPlot, unsigned int plywidth, unsigned int seed, float speed,
-	float noise, unsigned int threadChop);
+void MakeControlBlock(ControlBlock **out, GridPlot *gridPlot, void *appBlock, int2 winSize);
 
 __global__ void loco_kernel(float *dst, bool dstOut, cudaTextureObject_t texIn, cudaTextureObject_t texOut, int2 plySize, float speed);
 
@@ -80,7 +77,7 @@ void SetDevicePlyBlockArray(AppBlock *appBlock, float *data)
 	HANDLE_ERROR(cudaMemcpy(appBlock->plyBlock->dev_inSrc, data, plyMemSize, cudaMemcpyHostToDevice));
 }
 
-void MakeAppBlock(AppBlock **out, GridPlot *gridPlot, unsigned int plyWidth, unsigned int seed, float speed,
+void MakeAppBlock(AppBlock **out, unsigned int plyWidth, unsigned int seed, float speed,
 	float noise, unsigned int threadChop)
 {
 	AppBlock *appBlock = (AppBlock *)malloc(sizeof(AppBlock));
@@ -90,7 +87,6 @@ void MakeAppBlock(AppBlock **out, GridPlot *gridPlot, unsigned int plyWidth, uns
 
 	appBlock->speed = speed;
 	appBlock->noise = noise;
-	appBlock->gridPlot = gridPlot;
 	appBlock->totalTime = 0;
 	appBlock->frames = 0;
 	appBlock->threadChop = threadChop;
@@ -99,19 +95,19 @@ void MakeAppBlock(AppBlock **out, GridPlot *gridPlot, unsigned int plyWidth, uns
 	HANDLE_ERROR(cudaEventCreate(&appBlock->stop));
 }
 
-void MakeControlBlock(ControlBlock **out, GridPlot *gridPlot, unsigned int plywidth, unsigned int seed, float speed,
-	                  float noise, unsigned int threadChop)
+void MakeControlBlock(ControlBlock **out, GridPlot *gridPlot, void *appBlock, int2 winSize)
 {
 	ControlBlock *controlBlock = (ControlBlock *)malloc(sizeof(ControlBlock));
+	controlBlock->winSize = winSize;
+	controlBlock->appBlock = appBlock;
+	controlBlock->gridPlot = gridPlot;
+
 
 	CPUAnimBitmap *cbm = (CPUAnimBitmap *)malloc(sizeof(CPUAnimBitmap));
 	cbm->Init(gridPlot->imageWidth, controlBlock);
 	cbm->ClearCommand();
-	HANDLE_ERROR(cudaMalloc((void**)&controlBlock->output_bitmap, cbm->image_size()));
+	HANDLE_ERROR(cudaMalloc((void**)&controlBlock->device_bitmap, cbm->image_size()));
 
-	AppBlock *appBlock;
-	MakeAppBlock(&appBlock, gridPlot, plywidth, seed, speed, noise, threadChop);
-	controlBlock->appBlock = appBlock;
 	
 	*out = controlBlock;
 }
@@ -165,11 +161,18 @@ int main(int argc, const char **argv)
 		yStart = getCmdLineArgumentInt(argc, (const char **)argv, "yStart");
 	}
 
-	ControlBlock *controlBlock;
-	GridPlot	 *gridPlot;
-
+	GridPlot *gridPlot;
 	MakeGridPlot(&gridPlot, zoom, imageWidth, xStart, yStart);
-	MakeControlBlock(&controlBlock, gridPlot, plywidth, seed, speed, noise, threadChop);
+
+	AppBlock *appBlock;
+	MakeAppBlock(&appBlock, plywidth, seed, speed, noise, threadChop);
+
+
+	ControlBlock *controlBlock;
+	int2 winSize;
+	winSize.x = imageWidth;
+	winSize.y = imageWidth;
+	MakeControlBlock(&controlBlock, gridPlot, appBlock, winSize);
 
 	controlBlock->cPUAnimBitmap->anim_and_exit((void(*)(void*, int))anim_gpu,
 		(void(*)(void*))anim_exit);
@@ -277,7 +280,7 @@ void L(ControlBlock *controlBlock, int ticks)
 
 	dim3    simBlocks(plyWidth / appBlock->threadChop, plyWidth / appBlock->threadChop);
 	dim3    simThreads(appBlock->threadChop, appBlock->threadChop);
-	dim3    drawBlocks(plyWidth / (appBlock->threadChop*appBlock->gridPlot->zoom), plyWidth / (appBlock->threadChop*appBlock->gridPlot->zoom));
+	dim3    drawBlocks(plyWidth / (appBlock->threadChop*controlBlock->gridPlot->zoom), plyWidth / (appBlock->threadChop*controlBlock->gridPlot->zoom));
 	dim3    drawThreads(appBlock->threadChop, appBlock->threadChop);
 
 	CPUAnimBitmap  *cPUAnimBitmap = controlBlock->cPUAnimBitmap;
@@ -311,12 +314,12 @@ void L(ControlBlock *controlBlock, int ticks)
 		dstOut = !dstOut;
 	}
 
-	float_to_color2 << <drawBlocks, drawThreads >> >(controlBlock->output_bitmap, appBlock->plyBlock->dev_outSrc, appBlock->gridPlot->zoom, plyWidth);
+	float_to_color2 << <drawBlocks, drawThreads >> >(controlBlock->device_bitmap, appBlock->plyBlock->dev_outSrc, controlBlock->gridPlot->zoom, plyWidth);
 
-	//float_to_color<< <simBlocks, simThreads >> >(appBlock->output_bitmap, appBlock->plyBlock->dev_outSrc);
+	//float_to_color<< <simBlocks, simThreads >> >(appBlock->device_bitmap, appBlock->plyBlock->dev_outSrc);
 
 
-	HANDLE_ERROR(cudaMemcpy(cPUAnimBitmap->get_ptr(), controlBlock->output_bitmap, cPUAnimBitmap->image_size(), cudaMemcpyDeviceToHost));
+	HANDLE_ERROR(cudaMemcpy(cPUAnimBitmap->get_ptr(), controlBlock->device_bitmap, cPUAnimBitmap->image_size(), cudaMemcpyDeviceToHost));
 
 	HANDLE_ERROR(cudaEventRecord(appBlock->stop, 0));
 	HANDLE_ERROR(cudaEventSynchronize(appBlock->stop));

@@ -102,7 +102,7 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
     <CudaCompile Include="Pazingo.cu" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\common\DimStuff.cpp" />
+    <ClCompile Include="..\..\common\CudaGeneralFunc.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

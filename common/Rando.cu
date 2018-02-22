@@ -172,7 +172,6 @@ cudaError_t Gpu_UniformRandFloats_1d(float **dev_rands, RandData *randData, int 
 		fprintf(stderr, "cudaMalloc failed!");
 		goto Error;
 	}
-	randData->dev_curandStates;
 
 	gen_uniform_1d << <randData->blocks, randData->threads >> >(dev_r, randData->dev_curandStates, numRands);
 
@@ -203,7 +202,6 @@ cudaError_t Gpu_UniformRandFloats_2d(float **dev_rands, RandData *randData, int 
 		fprintf(stderr, "cudaMalloc failed!");
 		goto Error;
 	}
-	randData->dev_curandStates;
 
 	gen_uniform_2d << <randData->blocks, randData->threads >> >(dev_r, randData->dev_curandStates, numRands);
 
@@ -235,7 +233,6 @@ cudaError_t Gpu_NormalRandFloats_1d(float **dev_rands, RandData *randData,	int n
 		fprintf(stderr, "cudaMalloc failed!");
 		goto Error;
 	}
-	randData->dev_curandStates;
 
 	gen_normal_1d << <randData->blocks, randData->threads >> >(dev_r, randData->dev_curandStates, numRands);
 
@@ -265,7 +262,6 @@ cudaError_t Gpu_NormalRandFloats_2d(float **dev_rands, RandData *randData, int n
 		fprintf(stderr, "cudaMalloc failed!");
 		goto Error;
 	}
-	randData->dev_curandStates;
 
 	gen_normal_2d << <randData->blocks, randData->threads >> >(dev_r, randData->dev_curandStates, numRands);
 

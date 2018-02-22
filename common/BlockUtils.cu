@@ -35,3 +35,16 @@ void printDim3(dim3 *yow)
 	printf("yow: {%d, %d, %d}", yow->x, yow->y, yow->z);
 }
 
+
+int ThreadChop2d(int width)
+{
+	if (width > 255)
+		return 16;
+	if (width > 63)
+		return 8;
+	if (width > 15)
+		return 4;
+	if (width > 3)
+		return 2;
+	return 1;
+}

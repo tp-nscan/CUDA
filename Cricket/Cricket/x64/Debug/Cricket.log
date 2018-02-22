@@ -1,0 +1,63 @@
+﻿  
+  C:\Users\Tom\source\repos\CUDA\Cricket\Cricket>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile   -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\BlockUtils.cu.obj "C:\Users\Tom\source\repos\CUDA\Cricket\Cricket\BlockUtils.cu" -clean 
+  BlockUtils.cu
+  
+  C:\Users\Tom\source\repos\CUDA\Cricket\Cricket>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile   -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Cricket.cu.obj "C:\Users\Tom\source\repos\CUDA\Cricket\Cricket\Cricket.cu" -clean 
+  Cricket.cu
+  
+  C:\Users\Tom\source\repos\CUDA\Cricket\Cricket>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile   -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\PlyBlock.cu.obj "C:\Users\Tom\source\repos\CUDA\Cricket\Cricket\PlyBlock.cu" -clean 
+  PlyBlock.cu
+  
+  C:\Users\Tom\source\repos\CUDA\Cricket\Cricket>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile   -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Rando.cu.obj "C:\Users\Tom\source\repos\CUDA\Cricket\Cricket\Rando.cu" -clean 
+  Rando.cu
+  
+  C:\Users\Tom\source\repos\CUDA\Cricket\Cricket>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile   -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\TexUtils.cu.obj "C:\Users\Tom\source\repos\CUDA\Cricket\Cricket\TexUtils.cu" -clean 
+  TexUtils.cu
+  
+  C:\Users\Tom\source\repos\CUDA\Cricket\Cricket>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile   -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Utils.cu.obj "C:\Users\Tom\source\repos\CUDA\Cricket\Cricket\Utils.cu" -clean 
+  Utils.cu
+  Compiling CUDA source file BlockUtils.cu...
+  Compiling CUDA source file Utils.cu...
+  Compiling CUDA source file TexUtils.cu...
+  Compiling CUDA source file Rando.cu...
+  Compiling CUDA source file PlyBlock.cu...
+  Compiling CUDA source file Cricket.cu...
+  
+  C:\Users\Tom\source\repos\CUDA\Cricket\Cricket>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\BlockUtils.cu.obj "C:\Users\Tom\source\repos\CUDA\Cricket\Cricket\BlockUtils.cu" 
+  
+  C:\Users\Tom\source\repos\CUDA\Cricket\Cricket>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Utils.cu.obj "C:\Users\Tom\source\repos\CUDA\Cricket\Cricket\Utils.cu" 
+  
+  C:\Users\Tom\source\repos\CUDA\Cricket\Cricket>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\TexUtils.cu.obj "C:\Users\Tom\source\repos\CUDA\Cricket\Cricket\TexUtils.cu" 
+  
+  C:\Users\Tom\source\repos\CUDA\Cricket\Cricket>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\PlyBlock.cu.obj "C:\Users\Tom\source\repos\CUDA\Cricket\Cricket\PlyBlock.cu" 
+  
+  C:\Users\Tom\source\repos\CUDA\Cricket\Cricket>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Rando.cu.obj "C:\Users\Tom\source\repos\CUDA\Cricket\Cricket\Rando.cu" 
+  
+  C:\Users\Tom\source\repos\CUDA\Cricket\Cricket>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2017 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Cricket.cu.obj "C:\Users\Tom\source\repos\CUDA\Cricket\Cricket\Cricket.cu" 
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(154): warning : variable "frames" was declared but never referenced
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(155): warning : variable "arrayLength" was declared but never referenced
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(156): warning : variable "reps" was declared but never referenced
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(158): warning : variable "cudaResult" was declared but never referenced
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(161): warning : variable "host_rands" was declared but never referenced
+  PlyBlock.cu
+  TexUtils.cu
+  Utils.cu
+  BlockUtils.cu
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(154): warning : variable "frames" was declared but never referenced
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(155): warning : variable "arrayLength" was declared but never referenced
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(156): warning : variable "reps" was declared but never referenced
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(158): warning : variable "cudaResult" was declared but never referenced
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(161): warning : variable "host_rands" was declared but never referenced
+  Rando.cu
+  Cricket.cu
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(75): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:/Users/Tom/source/repos/CUDA/Cricket/Cricket/Cricket.cu(161): warning C4101: 'host_rands': unreferenced local variable
+  Cricket.vcxproj -> C:\Users\Tom\source\repos\CUDA\Cricket\x64\Debug\Cricket.exe
+  copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\cudart*.dll" "C:\Users\Tom\source\repos\CUDA\Cricket\x64\Debug\"
+  C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\cudart32_90.dll
+  C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\cudart64_90.dll
+          2 file(s) copied.
