@@ -2,6 +2,39 @@
 #include "device_launch_parameters.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <helper_cuda.h>
+#include <helper_functions.h>
+
+
+int IntNamed(int argc, char ** argv, char *name, int default)
+{
+	if (checkCmdLineFlag((const int)argc, (const char **)argv, (const char *)name))
+	{
+		return getCmdLineArgumentInt((const int)argc, (const char **)argv, (const char *)name);
+	}
+	return default;
+}
+
+float FloatNamed(int argc, char ** argv, char *name, float default)
+{
+	if (checkCmdLineFlag((const int)argc, (const char **)argv, (const char *)name))
+	{
+		return getCmdLineArgumentFloat((const int)argc, (const char **)argv, (const char *)name);
+	}
+	return default;
+}
+
+int MaxInt(int a, int b)
+{
+	if (a > b) return a;
+	return b;
+}
+
+int MinInt(int a, int b)
+{
+	if (a < b) return a;
+	return b;
+}
 
 int *IntArray(int length, int first = 0, int step = 0)
 {

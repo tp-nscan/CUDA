@@ -22,20 +22,13 @@
 
 struct CPUAnimBitmap;
 
-struct GridPlot
-{
-	unsigned int   zoom;
-	unsigned int   imageWidth;
-	unsigned int   xStart;
-	unsigned int   yStart;
-};
-
 struct ControlBlock {
+	int argc;
+	char **argv;
 	void    *appBlock;
 	char command[20];
 	unsigned char   *device_bitmap;
 	CPUAnimBitmap   *cPUAnimBitmap;
-	GridPlot        *gridPlot;
 	int2             winSize;
 };
 
@@ -43,8 +36,8 @@ struct CPUAnimBitmap {
     unsigned char    *pixels;
     int     width, height;
 	ControlBlock    *controlBlock;
-    void (*fAnim)(void*,int);
-    void (*animExit)(void*);
+    void (*fAnim)(ControlBlock*,int);
+    void (*animExit)(ControlBlock*);
     void (*clickDrag)(void*,int,int,int,int);
     int     dragStartX, dragStartY;
 	char commandBuff[20];
@@ -52,7 +45,7 @@ struct CPUAnimBitmap {
     CPUAnimBitmap() {
     }
 
-	void Init(int width, ControlBlock *cb)
+	void Init(ControlBlock *cb)
 	{
 		controlBlock = cb;
 		CPUAnimBitmap**   cpBm = get_bitmap_ptr();
@@ -96,7 +89,7 @@ struct CPUAnimBitmap {
         clickDrag = f;
     }
 
-    void anim_and_exit( void (*f)(void*,int), void(*e)(void*) ) {
+    void anim_and_exit( void (*f)(ControlBlock*,int), void(*e)(ControlBlock*) ) {
 
         fAnim = f;
         animExit = e;

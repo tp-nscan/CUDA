@@ -90,6 +90,8 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
   <ItemGroup>
     <CudaCompile Include="BlockUtils.cu" />
     <CudaCompile Include="Cricket.cu" />
+    <CudaCompile Include="GridPlot.cu" />
+    <CudaCompile Include="KbLoop.cu" />
     <CudaCompile Include="PlyBlock.cu" />
     <CudaCompile Include="Rando.cu" />
     <CudaCompile Include="TexUtils.cu" />

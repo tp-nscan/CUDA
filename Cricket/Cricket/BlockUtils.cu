@@ -3,7 +3,10 @@
 #include "device_launch_parameters.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "utils.h"
 
+#define MAX_BLOCKS_1D  16384
+#define MAX_BLOCKS_2D  128
 
 dim3 *dim3Ctr(int x, int y = 1, int z = 1)
 {
@@ -73,7 +76,7 @@ int ThreadChop2d(int width)
 void GridAndBlocks1d(dim3 &grid, dim3 &block, int size)
 {
 	int threadCt = ThreadChop1d(size);
-	int blockCt = (size + threadCt - 1) / threadCt;
+	int blockCt = MinInt((size + threadCt - 1) / threadCt, MAX_BLOCKS_1D);
 	grid = dim3(blockCt);
 	block = dim3(threadCt);
 }
@@ -82,7 +85,7 @@ void GridAndBlocks1d(dim3 &grid, dim3 &block, int size)
 void GridAndBlocks2d(dim3 &grid, dim3 &block, int width)
 {
 	int threadCt = ThreadChop2d(width);
-	int blockCt = (width + threadCt - 1) / threadCt;
+	int blockCt = MinInt((width + threadCt - 1) / threadCt, MAX_BLOCKS_2D);
 	grid = dim3(blockCt, blockCt);
 	block = dim3(threadCt, threadCt);
 }

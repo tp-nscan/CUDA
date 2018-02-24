@@ -15,10 +15,10 @@ void InitRandData(RandData **out, int seed, int length);
 
 void DeleteRandData(RandData *randData);
 
-void Gpu_UniformRandFloats_1d(float **dev_rands, RandData *randData, int numRands);
+void Gpu_UniformRandFloats(float **dev_rands, RandData *randData, int numRands);
 
-void Gpu_NormalRandFloats_1d(float **dev_rands, RandData *randData, int numRands);
+void Gpu_NormalRandFloats(float **dev_rands, RandData *randData, int numRands);
 
-void Gpu_UniformRandFloats_2d(float **dev_rands, RandData *randData, int numRands);
-
-void Gpu_NormalRandFloats_2d(float **dev_rands, RandData *randData, int numRands);
+//void Gpu_UniformRandFloats_2d(float **dev_rands, RandData *randData, int numRands);
+//
+//void Gpu_NormalRandFloats_2d(float **dev_rands, RandData *randData, int numRands);

@@ -621,9 +621,9 @@ C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\um\ime_cmodes.h
 C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc\helper_image.h
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\assert.h
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\math.h
-c:\users\tom\source\repos\cuda\cricket\cricket\BlockUtils.h
+c:\users\tom\source\repos\cuda\cricket\cricket\KbLoop.cuh
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\cuda_runtime.h
-c:\users\tom\source\repos\cuda\cricket\cricket\rando.h
+c:\users\tom\source\repos\cuda\cricket\cricket\Cricket.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\curand_kernel.h
 c:\program files\nvidia gpu computing toolkit\cuda\v9.0\include\curand.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\cuda_runtime.h
@@ -661,3 +661,21 @@ c:\program files\nvidia gpu computing toolkit\cuda\v9.0\include\curand_mtgp32_ke
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\math.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\cuda_runtime.h
 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\device_launch_parameters.h
+c:\users\tom\source\repos\cuda\cricket\cricket\Utils.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\cuda_runtime.h
+c:\users\tom\source\repos\cuda\cricket\cricket\BlockUtils.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\cuda_runtime.h
+c:\users\tom\source\repos\cuda\cricket\cricket\rando.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\curand_kernel.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\cuda_runtime.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\device_launch_parameters.h
+c:\users\tom\source\repos\cuda\cricket\cricket\GridPlot.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\curand_kernel.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\cuda_runtime.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\include\device_launch_parameters.h
+c:\users\tom\source\repos\cuda\cricket\cricket\cpu_anim2.h
+c:\users\tom\source\repos\cuda\cricket\cricket\gl_helper.h
+C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc\GL/glut.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\um\GL/gl.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\um\GL/glu.h
+C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.0\common\inc\GL/glext.h

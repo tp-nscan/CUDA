@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>plywidth=128 imagewidth=2048 speed=0.0008 noise=0.0002 zoom=4 threadChop=8 xStart=2 yStart=0 seed=1234 reps=100</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>plywidth=2 imagewidth=512 speed=0.0008 noise=0.0002 zoom=4 threadChop=8 xStart=2 yStart=0 seed=1234 reps=100</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

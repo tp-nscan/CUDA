@@ -3,61 +3,43 @@
 #include <string.h>
 #include <math.h>
 #include <cuda_runtime.h>
-
 #include <helper_cuda.h>
 #include <helper_functions.h>
-#include "BlockUtils.h";
-#include "rando.h";
+#include "KbLoop.cuh"
+#include "Utils.h"
+#include "BlockUtils.h"
+#include "rando.h"
+#include "GridPlot.h"
+#include "Cricket.h"
+#include "cpu_anim2.h"
 
-
-struct CricketCmdArgs {
-	int plywidth;
-	int imageWidth;
-	int zoom;
-	int threadChop;
-	int xStart;
-	int yStart;
-	int reps;
-	int seed;
-	float speed;
-	float noise;
-};
 
 ////////////////////////////////////////////////////////////////////////////////
 // declaration, forward
 void runRandTest(CricketCmdArgs *args);
-
-
-
+void runKbLoop(int argc, char **argv);
 
 ////////////////////////////////////////////////////////////////////////////////
-//! Simple test kernel for device functionality
-//! @param g_idata  input data in global memory
-//! @param g_odata  output data in global memory
+// MakeControlBlock
 ////////////////////////////////////////////////////////////////////////////////
-__global__ void
-testKernel(float *g_idata, float *g_odata)
+void MakeControlBlock(ControlBlock **out, void *appBlock, int2 winSize, int argc, char **argv)
 {
-	// shared memory
-	// the size is determined by the host application
-	extern  __shared__  float sdata[];
+	ControlBlock *controlBlock = (ControlBlock *)malloc(sizeof(ControlBlock));
+	controlBlock->argc = argc;
+	controlBlock->argv = argv;
+	controlBlock->winSize = winSize;
+	controlBlock->appBlock = appBlock;
 
-	// access thread id
-	const unsigned int tid = threadIdx.x;
-	// access number of threads in this block
-	const unsigned int num_threads = blockDim.x;
 
-	// read in input data from global memory
-	sdata[tid] = g_idata[tid];
-	__syncthreads();
+	CPUAnimBitmap *cbm = (CPUAnimBitmap *)malloc(sizeof(CPUAnimBitmap));
+	cbm->Init(controlBlock);
+	cbm->ClearCommand();
+	int sz = cbm->image_size();
+	checkCudaErrors(cudaMalloc((void**)&controlBlock->device_bitmap, cbm->image_size()));
 
-	// perform some computations
-	sdata[tid] = (float)num_threads * sdata[tid];
-	__syncthreads();
-
-	// write data to global memory
-	g_odata[tid] = sdata[tid];
+	*out = controlBlock;
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Get cmd line args
@@ -129,15 +111,43 @@ void GetCricketCmdArgs(CricketCmdArgs **out, int argc, char **argv)
 	cricketCmdArgs->noise = noise;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// runKbLoop
+////////////////////////////////////////////////////////////////////////////////
+//void runKbLoop(CricketCmdArgs *args)
+//{
+//	ControlBlock *controlBlock;
+//	int2 winSize;
+//	winSize.x = args->imageWidth;
+//	winSize.y = args->imageWidth;
+//	MakeControlBlock(&controlBlock, 0, winSize);
+//
+//	controlBlock->cPUAnimBitmap->anim_and_exit(gridPlot_anim_gpu, gridPlot_anim_exit);
+//}
+void runKbLoop(int argc, char **argv)
+{
+	ControlBlock *controlBlock;
+	int2 winSize;
+	winSize.x = 512;
+	winSize.y = 512;
+	MakeControlBlock(&controlBlock, 0, winSize, argc, argv);
+
+	controlBlock->cPUAnimBitmap->anim_and_exit(gridPlot_anim_gpu, gridPlot_anim_exit);
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // Program main
 ////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char **argv)
 {
+	int wonk = IntNamed(argc, argv, "plywidth", 77);
+	wonk = IntNamed(argc, argv, "dsa", 77);
+
 	CricketCmdArgs *cricketCmdArgs;
 	GetCricketCmdArgs(&cricketCmdArgs, argc, argv);
-	runRandTest(cricketCmdArgs);
+	//runRandTest(cricketCmdArgs);
+	runKbLoop(argc, argv);
+
 }
 
 
@@ -150,12 +160,6 @@ void runRandTest(CricketCmdArgs *args)
 	InitRandData(&randData, args->seed, args->imageWidth);
 
 	cudaEvent_t     start, stop;
-	float totalTime = 0;
-	float frames = 0;
-	int arrayLength = 1000000;
-	int reps = 1;
-
-	cudaError_t cudaResult = cudaSuccess;
 
 	float *dev_rands;
 	float *host_rands;
@@ -168,14 +172,13 @@ void runRandTest(CricketCmdArgs *args)
 
 	for (int i = 0; i < args->reps; i++) {
 
-		Gpu_UniformRandFloats_2d(&dev_rands, randData, args->imageWidth * args->plywidth);
+		Gpu_UniformRandFloats(&dev_rands, randData, args->imageWidth * args->plywidth);
 	}
 
 	checkCudaErrors(cudaEventRecord(stop, 0));
 	checkCudaErrors(cudaEventSynchronize(stop));
 	checkCudaErrors(cudaEventElapsedTime(&elapsedTime, start, stop));
-	totalTime = elapsedTime;
-	printf("Uniform:  %3.1f ms\n", totalTime);
+	printf("Uniform:  %3.1f ms\n", elapsedTime);
 
 	DeleteRandData(randData);
 }
