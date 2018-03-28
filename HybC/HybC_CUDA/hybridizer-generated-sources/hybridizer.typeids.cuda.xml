@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSerializedTypeId xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SerializedTypeId>
+    <Type>HybC.Program</Type>
+    <TypeId>1000000</TypeId>
+  </SerializedTypeId>
+  <SerializedTypeId>
+    <Type>System.Console</Type>
+    <TypeId>1000001</TypeId>
+  </SerializedTypeId>
+  <SerializedTypeId>
+    <Type>System.IFormatProvider</Type>
+    <TypeId>1000002</TypeId>
+  </SerializedTypeId>
+  <SerializedTypeId>
+    <Type>System.IO.TextWriter</Type>
+    <TypeId>1000003</TypeId>
+  </SerializedTypeId>
+  <SerializedTypeId>
+    <Type>System.Object</Type>
+    <TypeId>1000004</TypeId>
+  </SerializedTypeId>
+  <SerializedTypeId>
+    <Type>System.String</Type>
+    <TypeId>1000005</TypeId>
+  </SerializedTypeId>
+</ArrayOfSerializedTypeId>

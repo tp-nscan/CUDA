@@ -8,6 +8,7 @@
 #include "GridPlot.h"
 
 
+
 void MakeGridPlotAppBlock(GridPlotAppBlock **out, GridPlot *gridPlot, float *host_data)
 {
 	GridPlotAppBlock *gbaRet = (GridPlotAppBlock *)malloc(sizeof(GridPlotAppBlock));;

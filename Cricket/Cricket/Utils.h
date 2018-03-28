@@ -2,7 +2,7 @@
 #include "cuda_runtime.h"
 #include <stdlib.h>
 int IntNamed(int argc, char ** argv, char *name, int default);
-float FloatNamed(int argc, char ** argv, char *name, float default)
+float FloatNamed(int argc, char ** argv, char *name, float default);
 int MaxInt(int a, int b);
 int MinInt(int a, int b);
 int *IntArray(int length, int first = 0, int step = 0);

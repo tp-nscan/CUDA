@@ -1,0 +1,7 @@
+C:\Users\tpnsc\source\repos\CUDA\HybC\HybC\bin\x64\Debug\HybC.exe.config
+C:\Users\tpnsc\source\repos\CUDA\HybC\HybC\bin\x64\Debug\HybC.exe
+C:\Users\tpnsc\source\repos\CUDA\HybC\HybC\bin\x64\Debug\HybC.pdb
+C:\Users\tpnsc\source\repos\CUDA\HybC\HybC\obj\x64\Debug\HybC.csprojResolveAssemblyReference.cache
+C:\Users\tpnsc\source\repos\CUDA\HybC\HybC\obj\x64\Debug\HybC.exe
+C:\Users\tpnsc\source\repos\CUDA\HybC\HybC\obj\x64\Debug\HybC.pdb
+C:\Users\tpnsc\source\repos\CUDA\HybC\HybC\bin\x64\Debug\Hybridizer.Runtime.CUDAImports.dll
