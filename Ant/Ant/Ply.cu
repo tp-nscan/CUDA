@@ -47,15 +47,16 @@ __global__ void ply_1d_2d_1d(float *resOut, float *arrayIn, int2 plySize,
 // MakePly
 // Make an allocated, uninitialized Ply
 ////////////////////////////////////////////////////////////////////////////////
-void MakePly(Ply **out, unsigned int plyLength)
+void MakePly(Ply **out, unsigned int plyLength, unsigned int span)
 {
 	Ply *pbRet = (Ply *)malloc(sizeof(Ply));;
 	*out = pbRet;
 
-	pbRet->length = plyLength;
+	pbRet->area = plyLength;
+	pbRet->span = span;
 	pbRet->inToOut = true;
 
-	unsigned int plyMemSize = pbRet->length * sizeof(float);
+	unsigned int plyMemSize = pbRet->area * sizeof(float);
 	cudaError_t cudaResult = cudaSuccess;
 
 	checkCudaErrors(cudaMalloc((void**)&pbRet->dev_inSrc, plyMemSize));
@@ -67,15 +68,16 @@ void MakePly(Ply **out, unsigned int plyLength)
 // MakePly
 // Make an allocated Ply, having In initialized with *data
 ////////////////////////////////////////////////////////////////////////////////
-void MakePly(Ply **out, float *data, unsigned int plyLength)
+void MakePly(Ply **out, float *data, unsigned int plyLength, unsigned int span)
 {
 	Ply *pbRet = (Ply *)malloc(sizeof(Ply));
 	*out = pbRet;
 
-	pbRet->length = plyLength;
+	pbRet->area = plyLength;
+	pbRet->span = span;
 	pbRet->inToOut = true;
 
-	unsigned int plyMemSize = pbRet->length * sizeof(float);
+	unsigned int plyMemSize = pbRet->area * sizeof(float);
 	cudaError_t cudaResult = cudaSuccess;
 
 	checkCudaErrors(cudaMalloc((void**)&pbRet->dev_inSrc, plyMemSize));
@@ -90,7 +92,7 @@ void MakePly(Ply **out, float *data, unsigned int plyLength)
 ////////////////////////////////////////////////////////////////////////////////
 void GetPlyData(Ply *ply, float *host_res)
 {
-	unsigned int plyMemSize = ply->length * sizeof(float);
+	unsigned int plyMemSize = ply->area * sizeof(float);
 	if (ply->inToOut)
 	{
 		checkCudaErrors(cudaMemcpy(host_res, ply->dev_inSrc, plyMemSize, cudaMemcpyDeviceToHost));
@@ -139,7 +141,7 @@ void RunPlyCorrectness(int argc, char **argv)
 {
 	//Stride=12 blocks=6 threads=6 reps=20 speed=0.3 decay=3.5 offset=40
 	int stride = IntNamed(argc, argv, "stride", 12);
-	int Area = stride*stride;
+	int area = stride*stride;
 	int blocks = IntNamed(argc, argv, "blocks", 6);
 	int threads = IntNamed(argc, argv, "threads", 6);
 	int2 plySize;  plySize.x = stride; plySize.y = stride;
@@ -149,18 +151,18 @@ void RunPlyCorrectness(int argc, char **argv)
 	int offset = IntNamed(argc, argv, "offset", 40);
 
 	float *da = DotArray(stride, offset);
-	PrintFloatArray(da, stride, Area);
+	PrintFloatArray(da, stride, area);
 
 	Ply *ply;
-	MakePly(&ply, da, Area);
-	float *daOut = (float *)malloc(sizeof(float)*Area);
+	MakePly(&ply, da, area, stride);
+	float *daOut = (float *)malloc(sizeof(float)*area);
 
 	for (int i = 0; i < reps; i++)
 	{
 		printf("The other way:\n");
 		RunPly(ply, plySize, speed, blocks, threads, decay);
 		GetPlyData(ply, daOut);
-		PrintFloatArray(daOut, stride, Area);
+		PrintFloatArray(daOut, stride, area);
 	}
 }
 
@@ -172,7 +174,7 @@ void RunPlyBench(int argc, char **argv)
 {
 	//stride=1024 reps=1000 speed=0.0003 decay=3.5
 	int stride = IntNamed(argc, argv, "stride", 12);
-	int Area = stride*stride;
+	int area = stride*stride;
 	int2 plySize;  plySize.x = stride; plySize.y = stride;
 	int reps = IntNamed(argc, argv, "reps", 16);
 	float speed = FloatNamed(argc, argv, "speed", 0.3);
@@ -182,8 +184,8 @@ void RunPlyBench(int argc, char **argv)
 
 	float *da = DotArray(stride, offset);
 	Ply *ply;
-	MakePly(&ply, da, Area);
-	float *daOut = (float *)malloc(sizeof(float)*Area);
+	MakePly(&ply, da, area, stride);
+	float *daOut = (float *)malloc(sizeof(float)*area);
 
 
 	cudaEvent_t start, stop;

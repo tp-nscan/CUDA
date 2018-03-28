@@ -6,7 +6,7 @@
 #include <helper_functions.h>
 
 
-int IntNamed(int argc, char ** argv, char *name, int default)
+int IntNamed(int argc, char ** argv, const char *name, int default)
 {
 	if (checkCmdLineFlag((const int)argc, (const char **)argv, (const char *)name))
 	{
@@ -15,7 +15,7 @@ int IntNamed(int argc, char ** argv, char *name, int default)
 	return default;
 }
 
-float FloatNamed(int argc, char ** argv, char *name, float default)
+float FloatNamed(int argc, char ** argv, const char *name, float default)
 {
 	if (checkCmdLineFlag((const int)argc, (const char **)argv, (const char *)name))
 	{

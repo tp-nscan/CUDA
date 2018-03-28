@@ -1,8 +1,8 @@
 #pragma once
 #include "cuda_runtime.h"
 #include <stdlib.h>
-int IntNamed(int argc, char ** argv, char *name, int default);
-float FloatNamed(int argc, char ** argv, char *name, float default);
+int IntNamed(int argc, char ** argv, const char *name, int default);
+float FloatNamed(int argc, char ** argv, const char *name, float default);
 int MaxInt(int a, int b);
 int MinInt(int a, int b);
 float MaxFloat(float a, float b);

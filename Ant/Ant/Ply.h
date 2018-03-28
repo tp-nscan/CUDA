@@ -6,7 +6,8 @@
 
 //globals needed by the update routine
 struct Ply {
-	unsigned int length;
+	unsigned int area;
+	unsigned int span;
 	bool inToOut;
 	float           *dev_inSrc;
 	float           *dev_outSrc;
@@ -16,9 +17,9 @@ void GetPlyData(Ply *texPly, float *data_outSrc);
 
 void RunPly(Ply *texPly, int2 plySize, float speed, int blocks, int threads, float decay);
 
-void MakePly(Ply **out, unsigned int length);
+void MakePly(Ply **out, unsigned int plyLength, unsigned int span);
 
-void MakePly(Ply **out, float *data, unsigned int length);
+void MakePly(Ply **out, float *data, unsigned int plyLength, unsigned int span);
 
 void FreePly(Ply *plyBlock);
 

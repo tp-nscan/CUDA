@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>dataLen=1000000 reps=1000 seed=1243</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>dataLen=400 span=20 reps=1000 seed=243</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LocalDebuggerCommandArguments>dataLen=1000000 reps=10000 seed=1243</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>dataLen=1000000 span=1000 reps=10000 seed=1243 speed=0.05 noise=0.01</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
