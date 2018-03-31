@@ -23,4 +23,8 @@ void RunRandPlyCorrectness(int argc, char **argv);
 
 void RunRandPlyBench(int argc, char **argv);
 
-void BreakDown();
+float *RandPlyEnergy(RandPly *randPly);
+
+void RunEnergyTest(int argc, char **argv);
+
+void RunEnergyTestC(int argc, char **argv);

@@ -48,6 +48,16 @@ float MinFloat(float a, float b)
 	return b;
 }
 
+float FloatArraySum(float *array, int length)
+{
+	float cume = 0;
+	for (int i = 0; i < length; i++)
+	{
+		cume += array[i];
+	}
+	return cume;
+}
+
 float *FloatArray(int length)
 {
 	float *av = (float *)malloc(sizeof(float) * length);
@@ -97,6 +107,36 @@ float *DotArray(int span, int offset)
 		}
 	}
 	av[((span/2) * (span + 1) + offset) % area] = 1.0;
+	return av;
+}
+
+float *DashArray(int span, int offset)
+{
+	int area = span * span;
+	float *av = (float *)malloc(sizeof(float) * area);
+	for (int i = 0; i < span; i++)
+	{
+		for (int j = 0; j < span; j++)
+		{
+			av[i + j * span] = 0.0;
+		}
+	}
+	av[((span / 2) * (span + 1) + offset) % area] = 1.0;
+	av[((span / 2) * (span + 1) + offset + 1) % area] = 1.0;
+	return av;
+}
+
+float *CheckerArray(int span)
+{
+	int area = span * span;
+	float *av = (float *)malloc(sizeof(float) * area);
+	for (int i = 0; i < span; i++)
+	{
+		for (int j = 0; j < span; j++)
+		{
+			av[i + j * span] = (float)(((i - j + 4096) % 2) *2 - 1);
+		}
+	}
 	return av;
 }
 

@@ -22,7 +22,6 @@ int main(int argc, char **argv)
 	int wonk = IntNamed(argc, argv, "plywidth", 77);
 	wonk = IntNamed(argc, argv, "dsa", 77);
 
-	RunRandPlyBench(argc, argv);
-	//BreakDown();
+	RunEnergyTestC(argc, argv);
 	return 0;
 }
