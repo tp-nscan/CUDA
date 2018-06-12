@@ -8,6 +8,90 @@
 #include "BlockUtils.h"
 #include "Ply.h"
 
+
+////////////////////////////////////////////////////////////////////////////////
+// grid_local_energy
+// A 1d texture, working on a 2d torus, using 1d blocks and threads
+////////////////////////////////////////////////////////////////////////////////
+__global__ void grid_local_energy(float *resOut, float *plyIn, int2 plySize) {
+
+	int plyLength = plySize.x * plySize.y;
+	int step = blockDim.x * gridDim.x;
+
+	for (int i = blockDim.x * blockIdx.x + threadIdx.x; i < plyLength; i += step)
+	{
+		int col = i % plySize.x;
+		int row = (i - col) / plySize.x;
+		int colm = (col - 1 + plySize.x) % plySize.x;
+		int colp = (col + 1 + plySize.x) % plySize.x;
+		int rowm = (row - 1 + plySize.y) % plySize.y;
+		int rowp = (row + 1 + plySize.y) % plySize.y;
+
+		int left = colm + row * plySize.x;
+		int right = colp + row * plySize.x;
+		int top = col + rowp * plySize.x;
+		int bottom = col + rowm * plySize.x;
+
+		float t = plyIn[top];
+		float l = plyIn[left];
+		float c = plyIn[i];
+		float r = plyIn[right];
+		float b = plyIn[bottom];
+
+		resOut[i] = c * (t + b + r + l);
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// grid_local_energyC
+// A 1d texture, working on a 2d torus, using 1d blocks and threads
+////////////////////////////////////////////////////////////////////////////////
+__global__ void grid_local_energyC(float *resOut, float *plyIn, int2 plySize) {
+
+	__shared__ float cache[THREADS_1D];
+	int cacheIndex = threadIdx.x;
+
+	int plyLength = plySize.x * plySize.y;
+	int step = blockDim.x * gridDim.x;
+
+	for (int i = blockDim.x * blockIdx.x + threadIdx.x; i < plyLength; i += step)
+	{
+		int col = i % plySize.x;
+		int row = (i - col) / plySize.x;
+		int colm = (col - 1 + plySize.x) % plySize.x;
+		int colp = (col + 1 + plySize.x) % plySize.x;
+		int rowm = (row - 1 + plySize.y) % plySize.y;
+		int rowp = (row + 1 + plySize.y) % plySize.y;
+
+		int left = colm + row * plySize.x;
+		int right = colp + row * plySize.x;
+		int top = col + rowp * plySize.x;
+		int bottom = col + rowm * plySize.x;
+
+		float t = plyIn[top];
+		float l = plyIn[left];
+		float c = plyIn[i];
+		float r = plyIn[right];
+		float b = plyIn[bottom];
+
+		resOut[i] = c * (t + b + r + l);
+	}
+
+	__syncthreads();
+
+	int j = blockDim.x / 2;
+	while (j != 0) {
+		if (cacheIndex < j)
+			cache[cacheIndex] += cache[cacheIndex + j];
+		__syncthreads();
+		j /= 2;
+	}
+	if (cacheIndex == 0)
+		resOut[blockIdx.x] = cache[0];
+}
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // ply_1d_2d_1d
 // A 1d texture, working on a 2d torus, using 1d blocks and threads

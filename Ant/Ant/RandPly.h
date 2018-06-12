@@ -15,16 +15,8 @@ void MakeRandPly(RandPly **randPly, float *data, int seed, unsigned int plyLengt
 
 void RunRandPlyLocalUpdate(RandPly *randPly, int num_steps, float speed, float noise);
 
-void RunRandPlyCume(RandPly *randPly, int num_steps);
-
 void DeleteRandPly(RandPly *randPly);
-
-void RunRandPlyCorrectness(int argc, char **argv);
 
 void RunRandPlyBench(int argc, char **argv);
 
-float *RandPlyEnergy(RandPly *randPly);
-
-void RunEnergyTest(int argc, char **argv);
-
-void RunEnergyTestC(int argc, char **argv);
+float *RunRandPly(int span, float speed, float noise, int seed, float *h_data, int reps);

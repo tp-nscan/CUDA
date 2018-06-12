@@ -15,7 +15,6 @@
 
 #define CURAND_CALL(x) do { if((x)!=CURAND_STATUS_SUCCESS) {printf("Error at %s:%d\n",__FILE__,__LINE__); return EXIT_FAILURE;}} while(0)
 
-const int ThreadsPerBlock = 512;
 
 ////////////////////////////////////////////////////////////////////////////////
 // randPly_local_update
@@ -60,105 +59,6 @@ __global__ void randPly_local_update(float *resOut, float *plyIn, float *rands, 
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// randPly_local_energy
-// A 1d texture, working on a 2d torus, using 1d blocks and threads
-////////////////////////////////////////////////////////////////////////////////
-__global__ void randPly_local_energy(float *resOut, float *plyIn, int2 plySize) {
-
-	int plyLength = plySize.x * plySize.y;
-	int step = blockDim.x * gridDim.x;
-
-	for (int i = blockDim.x * blockIdx.x + threadIdx.x; i < plyLength; i += step)
-	{
-		int col = i % plySize.x;
-		int row = (i - col) / plySize.x;
-		int colm = (col - 1 + plySize.x) % plySize.x;
-		int colp = (col + 1 + plySize.x) % plySize.x;
-		int rowm = (row - 1 + plySize.y) % plySize.y;
-		int rowp = (row + 1 + plySize.y) % plySize.y;
-
-		int left = colm + row * plySize.x;
-		int right = colp + row * plySize.x;
-		int top = col + rowp * plySize.x;
-		int bottom = col + rowm * plySize.x;
-
-		float t = plyIn[top];
-		float l = plyIn[left];
-		float c = plyIn[i];
-		float r = plyIn[right];
-		float b = plyIn[bottom];
-
-		resOut[i] = c * (t + b + r + l);
-	}
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// randPly_local_energy
-// A 1d texture, working on a 2d torus, using 1d blocks and threads
-////////////////////////////////////////////////////////////////////////////////
-__global__ void randPly_local_energyC(float *resOut, float *plyIn, int2 plySize) {
-
-	__shared__ float cache[ThreadsPerBlock];
-	int cacheIndex = threadIdx.x;
-
-	int plyLength = plySize.x * plySize.y;
-	int step = blockDim.x * gridDim.x;
-
-	for (int i = blockDim.x * blockIdx.x + threadIdx.x; i < plyLength; i += step)
-	{
-		int col = i % plySize.x;
-		int row = (i - col) / plySize.x;
-		int colm = (col - 1 + plySize.x) % plySize.x;
-		int colp = (col + 1 + plySize.x) % plySize.x;
-		int rowm = (row - 1 + plySize.y) % plySize.y;
-		int rowp = (row + 1 + plySize.y) % plySize.y;
-
-		int left = colm + row * plySize.x;
-		int right = colp + row * plySize.x;
-		int top = col + rowp * plySize.x;
-		int bottom = col + rowm * plySize.x;
-
-		float t = plyIn[top];
-		float l = plyIn[left];
-		float c = plyIn[i];
-		float r = plyIn[right];
-		float b = plyIn[bottom];
-
-		resOut[i] = c * (t + b + r + l);
-	}
-
-	__syncthreads();
-
-	int j = blockDim.x / 2;
-	while (j != 0) {
-		if (cacheIndex < j)
-			cache[cacheIndex] += cache[cacheIndex + j];
-		__syncthreads();
-		j /= 2;
-	}
-	if (cacheIndex == 0)
-		resOut[blockIdx.x] = cache[0];
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// randPly_cume
-// A 1d texture, working on a 2d torus, using 1d blocks and threads
-////////////////////////////////////////////////////////////////////////////////
-__global__ void randPly_cume(float *resOut, float *arrayIn,
-	float *randoms, int plyLength) {
-
-	unsigned int tid = blockIdx.x * blockDim.x + threadIdx.x;
-	int step = blockDim.x * gridDim.x;
-
-	for (int i = tid; i < plyLength; i += step)
-	{
-		resOut[i] = arrayIn[i] + randoms[i];
-		//resOut[i] = arrayIn[i] + 1;
-	}
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
 //! MakeRandPly
 ////////////////////////////////////////////////////////////////////////////////
 void MakeRandPly(RandPly **randPly, float *data, int seed, unsigned int plyLength, unsigned int span)
@@ -177,7 +77,7 @@ void MakeRandPly(RandPly **randPly, float *data, int seed, unsigned int plyLengt
 ////////////////////////////////////////////////////////////////////////////////
 void RunRandPlyLocalUpdate(RandPly *randPly, int num_steps, float speed, float noise)
 {
-	int blocks = SuggestedBlocks((randPly->ply->area + ThreadsPerBlock - 1) / ThreadsPerBlock);
+	int blocks = SuggestedBlocks((randPly->ply->area + THREADS_1D - 1) / THREADS_1D);
 	int2 plySize;
 	plySize.x = randPly->ply->span; plySize.y = randPly->ply->span;
 
@@ -187,7 +87,7 @@ void RunRandPlyLocalUpdate(RandPly *randPly, int num_steps, float speed, float n
 
 		if (randPly->ply->inToOut)
 		{
-			randPly_local_update << <blocks, ThreadsPerBlock >> >(
+			randPly_local_update << <blocks, THREADS_1D >> >(
 				randPly->ply->dev_outSrc,
 				randPly->ply->dev_inSrc,
 				randPly->randData->dev_rands,
@@ -197,7 +97,7 @@ void RunRandPlyLocalUpdate(RandPly *randPly, int num_steps, float speed, float n
 		}
 		else
 		{
-			randPly_local_update << <blocks, ThreadsPerBlock >> >(
+			randPly_local_update << <blocks, THREADS_1D >> >(
 				randPly->ply->dev_inSrc,
 				randPly->ply->dev_outSrc,
 				randPly->randData->dev_rands,
@@ -211,11 +111,11 @@ void RunRandPlyLocalUpdate(RandPly *randPly, int num_steps, float speed, float n
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//! PlyEnergy
+//! GridEnergy
 ////////////////////////////////////////////////////////////////////////////////
-float *PlyEnergy(float *d_ply, int span, int dataLen)
+float *GridEnergy(float *d_ply, int span, int dataLen)
 {
-	int blocks = SuggestedBlocks((dataLen + ThreadsPerBlock - 1) / ThreadsPerBlock);
+	int blocks = SuggestedBlocks((dataLen + THREADS_1D - 1) / THREADS_1D);
 
 	int plyMemSize = span * span * sizeof(float);
 	int2 plySize;
@@ -224,7 +124,7 @@ float *PlyEnergy(float *d_ply, int span, int dataLen)
 	float *d_energies;
 	checkCudaErrors(cudaMalloc((void**)&d_energies, plyMemSize));
 
-	randPly_local_energy << <blocks, ThreadsPerBlock >> >(
+	grid_local_energy << <blocks, THREADS_1D >> >(
 		d_energies,
 		d_ply,
 		plySize);
@@ -237,11 +137,11 @@ float *PlyEnergy(float *d_ply, int span, int dataLen)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//! PlyEnergyC
+//! GridEnergyC
 ////////////////////////////////////////////////////////////////////////////////
-float *PlyEnergyC(float *d_ply, int span, int dataLen)
+float *GridEnergyC(float *d_ply, int span, int dataLen)
 {
-	int blocks = SuggestedBlocks((dataLen + ThreadsPerBlock - 1) / ThreadsPerBlock);
+	int blocks = SuggestedBlocks((dataLen + THREADS_1D - 1) / THREADS_1D);
 
 	int blockEnergySize = blocks * blocks * sizeof(float);
 	int2 plySize;
@@ -250,7 +150,7 @@ float *PlyEnergyC(float *d_ply, int span, int dataLen)
 	float *d_energies;
 	checkCudaErrors(cudaMalloc((void**)&d_energies, blockEnergySize));
 
-	randPly_local_energyC << <blocks, ThreadsPerBlock >> >(
+	grid_local_energyC << <blocks, THREADS_1D >> >(
 		d_energies,
 		d_ply,
 		plySize);
@@ -263,109 +163,35 @@ float *PlyEnergyC(float *d_ply, int span, int dataLen)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-//! RandPlyEnergy
+//! PlyEnergy
 ////////////////////////////////////////////////////////////////////////////////
-float *RandPlyEnergy(RandPly *randPly)
+float *PlyEnergy(Ply *ply)
 {
-	int blocks = SuggestedBlocks((randPly->ply->area + ThreadsPerBlock - 1) / ThreadsPerBlock);
-	int2 plySize;
-	plySize.x = randPly->ply->span; plySize.y = randPly->ply->span;
-	unsigned int plyMemSize = randPly->ply->area * sizeof(float);
-	float *d_energies;
-    checkCudaErrors(cudaMalloc((void**)&d_energies, plyMemSize));
-	//(float *resOut, float *plyIn, int2 plySize)
-
-	if (randPly->ply->inToOut)
+	if (ply->inToOut)
 	{
-		randPly_local_energy << <blocks, ThreadsPerBlock >> >(
-			d_energies,
-			randPly->ply->dev_inSrc,
-			plySize);
+		return GridEnergy(ply->dev_inSrc, ply->span, ply->area);
 	}
 	else
 	{
-		randPly_local_energy << <blocks, ThreadsPerBlock >> >(
-			d_energies,
-			randPly->ply->dev_outSrc,
-			plySize);
+		return GridEnergy(ply->dev_outSrc, ply->span, ply->area);
 	}
-	float *h_energies = (float *)malloc(plyMemSize);
-	checkCudaErrors(cudaMemcpy(h_energies, d_energies, plyMemSize, cudaMemcpyDeviceToHost));
-	return h_energies;
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-//! RandPlyEnergy
+//! PlyEnergyC
 ////////////////////////////////////////////////////////////////////////////////
-float *RandPlyEnergyC(RandPly *randPly)
+float *PlyEnergyC(Ply *ply)
 {
-	int dataLen = randPly->ply->area;
-	int blocks = SuggestedBlocks((dataLen + ThreadsPerBlock -1) / ThreadsPerBlock);
-	int2 plySize;
-	plySize.x = randPly->ply->span; plySize.y = randPly->ply->span;
-	float *d_energies;
-	checkCudaErrors(cudaMalloc((void**)&d_energies, blocks * sizeof(float)));
-	//(float *resOut, float *plyIn, int2 plySize)
-
-	if (randPly->ply->inToOut)
+	if (ply->inToOut)
 	{
-		randPly_local_energyC << <blocks, ThreadsPerBlock >> >(
-			d_energies,
-			randPly->ply->dev_inSrc,
-			plySize);
+		return GridEnergyC(ply->dev_inSrc, ply->span, ply->area);
 	}
 	else
 	{
-		randPly_local_energyC << <blocks, ThreadsPerBlock >> >(
-			d_energies,
-			randPly->ply->dev_outSrc,
-			plySize);
-	}
-	float *h_energies = (float *)malloc(blocks * sizeof(float));
-	checkCudaErrors(cudaMemcpy(h_energies, d_energies, blocks * sizeof(float), cudaMemcpyDeviceToHost));
-	return h_energies;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-//! RunRandPly
-////////////////////////////////////////////////////////////////////////////////
-void RunRandPlyCume(RandPly *randPly, int num_steps)
-{
-	const int threads = 512;
-	const float speed = 0.1;
-	const float noise = 0.01;
-	int dataLen = randPly->ply->area;
-	int blocks = SuggestedBlocks((dataLen + ThreadsPerBlock - 1) / ThreadsPerBlock);
-	int2 plySize;
-	plySize.x = randPly->ply->span; plySize.y = randPly->ply->span;
-
-	for (int step = 0; step < num_steps; step++)
-	{
-		UpdateRandData(randPly->randData);
-
-		if (randPly->ply->inToOut)
-		{
-			randPly_cume << <blocks, threads >> >(
-				randPly->ply->dev_outSrc,
-				randPly->ply->dev_inSrc,
-				randPly->randData->dev_rands,
-				dataLen);
-		}
-		else
-		{
-			randPly_cume << <blocks, threads >> >(
-				randPly->ply->dev_inSrc,
-				randPly->ply->dev_outSrc,
-				randPly->randData->dev_rands,
-				dataLen);
-		}
-
-		randPly->ply->inToOut = !randPly->ply->inToOut;
+		return GridEnergyC(ply->dev_outSrc, ply->span, ply->area);
 	}
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////
 //! DeleteRandPly
@@ -376,70 +202,6 @@ void DeleteRandPly(RandPly *randPly)
 	DeleteRandData(randPly->randData);
 }
 
-
-////////////////////////////////////////////////////////////////////////////////
-//! RunRandPlyCorrectness
-////////////////////////////////////////////////////////////////////////////////
-void RunRandPlyCorrectness(int argc, char **argv)
-{
-	//dataLen=400 span=20 reps=50 seed=1243 speed=0.05 noise=0.01 batch=10
-	int dataLen = IntNamed(argc, argv, "dataLen", 36);
-	int span = IntNamed(argc, argv, "span", 6);
-	int seed = IntNamed(argc, argv, "seed", 12);
-	int reps = IntNamed(argc, argv, "reps", 16);
-	float speed = FloatNamed(argc, argv, "speed", 0.05);
-	float noise = FloatNamed(argc, argv, "noise", 0.01);
-	int batch = IntNamed(argc, argv, "batch", 10);
-	printf("dataLen: %d  batch: %d  speed: %3.4f  noise: %3.4f \n", dataLen, batch, speed, noise);
-
-	float *h_samples;
-
-	int dataSize = dataLen * sizeof(float);
-	h_samples = FloatArray(dataLen);
-
-
-	int blocks = SuggestedBlocks((dataLen + ThreadsPerBlock - 1) / ThreadsPerBlock);
-
-	RandPly *randPly;
-	MakeRandPly(&(randPly), h_samples, seed, dataLen, span);
-
-	cudaEvent_t start, stop;
-
-	float *dev_rands;
-	float *host_rands;
-	float   elapsedTime;
-
-	checkCudaErrors(cudaEventCreate(&start));
-	checkCudaErrors(cudaEventCreate(&stop));
-	checkCudaErrors(cudaEventRecord(start, 0));
-
-	GetPlyData(randPly->ply, h_samples);
-	PrintFloatArray(h_samples, span, dataLen);
-	printf("n:\n");
-	printf("n:\n");
-
-	for (int i = 0; i < reps; i++) {
-		RunRandPlyLocalUpdate(randPly, 1, speed, noise);
-		GetPlyData(randPly->ply, h_samples);
-		//PrintFloatArray(h_samples, span, dataLen);
-		float *out = RandPlyEnergy(randPly);
-		PrintFloatArray(out, span, dataLen);
-		printf("n:\n");
-		float *outC = RandPlyEnergyC(randPly);
-		PrintFloatArray(outC, 1, blocks);
-
-		//printf("Energy:  %3.4f\n", FloatArraySum(out, dataLen));
-		//float *outC = RandPlyEnergyC(randPly);
-		//printf("EnergyC:  %3.4f\n", FloatArraySum(outC, blocks));
-	}
-
-	checkCudaErrors(cudaEventRecord(stop, 0));
-	checkCudaErrors(cudaEventSynchronize(stop));
-	checkCudaErrors(cudaEventElapsedTime(&elapsedTime, start, stop));
-
-	printf("Time:  %3.1f ms\n", elapsedTime);
-	DeleteRandPly(randPly);
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 //! RunEnergyTest
@@ -459,14 +221,12 @@ void RunEnergyTest(int argc, char **argv)
 	checkCudaErrors(cudaMalloc((void**)&d_pattern, plyMemSize));
 	checkCudaErrors(cudaMemcpy(d_pattern, h_pattern, plyMemSize, cudaMemcpyHostToDevice));
 
-	float *h_energies = PlyEnergy(d_pattern, span, dataLen);
-
-	//float *h_energies = (float *)malloc(plyMemSize);
-	//checkCudaErrors(cudaMemcpy(h_energies, d_pattern, plyMemSize, cudaMemcpyDeviceToHost));
+	float *h_energies = GridEnergy(d_pattern, span, dataLen);
 
 	printf("Energies:\n");
 	PrintFloatArray(h_energies, span, span*span);
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //! RunEnergyTestC
@@ -478,7 +238,7 @@ void RunEnergyTestC(int argc, char **argv)
 	int span = IntNamed(argc, argv, "span", 9);
 
 
-	int blocks = SuggestedBlocks((dataLen + ThreadsPerBlock - 1) / ThreadsPerBlock);
+	int blocks = SuggestedBlocks((dataLen + THREADS_1D - 1) / THREADS_1D);
 
 	float *d_pattern;
 	float *h_pattern = CheckerArray(span);
@@ -489,7 +249,7 @@ void RunEnergyTestC(int argc, char **argv)
 	checkCudaErrors(cudaMalloc((void**)&d_pattern, plyMemSize));
 	checkCudaErrors(cudaMemcpy(d_pattern, h_pattern, plyMemSize, cudaMemcpyHostToDevice));
 
-	float *h_energies = PlyEnergyC(d_pattern, span, dataLen);
+	float *h_energies = GridEnergyC(d_pattern, span, dataLen);
 
 	//float *h_energies = (float *)malloc(plyMemSize);
 	//checkCudaErrors(cudaMemcpy(h_energies, d_pattern, plyMemSize, cudaMemcpyDeviceToHost));
@@ -498,11 +258,24 @@ void RunEnergyTestC(int argc, char **argv)
 	PrintFloatArray(h_energies, 1, blocks);
 }
 
+float *RunRandPly(int span, float speed, float noise, int seed, float *h_data, int reps)
+{
+	RandPly *randPly;
+	MakeRandPly(&(randPly), h_data, seed, span*span, span);
+	RunRandPlyLocalUpdate(randPly, reps, speed, noise);
+	float *h_results = (float *)malloc(span * span * sizeof(float));
+	GetPlyData(randPly->ply, h_results);
+	DeleteRandPly(randPly);
+
+	return h_results;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 //! RunRandPlyBench
 ////////////////////////////////////////////////////////////////////////////////
 void RunRandPlyBench(int argc, char **argv)
 {
+	//dataLen=1048576 span=1024 reps=100 seed=6423 speed=0.1 noise=0.01 batch=1
 	//dataLen=400 span=20 reps=50 seed=1243 speed=0.05 noise=0.01 batch=10
 	int dataLen = IntNamed(argc, argv, "dataLen", 36);
 	int span = IntNamed(argc, argv, "span", 6);
@@ -516,15 +289,12 @@ void RunRandPlyBench(int argc, char **argv)
 	float *h_samples;
 
 	int dataSize = dataLen * sizeof(float);
-	h_samples = FloatArray(dataLen);
+	h_samples = CheckerArray(span);
 
 	RandPly *randPly;
 	MakeRandPly(&(randPly), h_samples, seed, dataLen, span);
 
 	cudaEvent_t start, stop;
-
-	float *dev_rands;
-	float *host_rands;
 	float   elapsedTime;
 
 	checkCudaErrors(cudaEventCreate(&start));
@@ -533,7 +303,7 @@ void RunRandPlyBench(int argc, char **argv)
 
 	for (int i = 0; i < reps; i++) {
 		RunRandPlyLocalUpdate(randPly, batch, speed, noise);		
-		float *out = RandPlyEnergy(randPly);
+		float *out = PlyEnergy(randPly->ply);
 		printf("Energy:  %3.4f\n", FloatArraySum(out, dataLen));
 	}
 

@@ -1,0 +1,92 @@
+1. General description
+----------------------
+Sample code for the "GPU-based Swendsen-Wang multi-cluster spin flip 
+Monte Carlo method".
+The basic idea of the GPU implementation was already 
+published [1] and [2]. 
+
+Copyright (C) 2015  Yukihiro Komura, Yutaka Okabe
+RIKEN, Advanced Institute for Computational Science
+Department of Physics, Tokyo Metropolitan University
+
+This program is subject to the terms and conditions of the Standard CPC licence (http://cpc.cs.qub.ac.uk/licence/licence.html) 
+
+The included CUDA programs are:
+ * Ising_2D.cu: 2D Ising model
+ * Potts_2D.cu: 2D q-state Potts model
+ * clock_2D.cu: 2D q-state clock model
+ * Ising_3D.cu: 3D Ising model
+ * Potts_3D.cu: 3D q-state Potts model
+ * clock_3D.cu: 3D q-state clock model
+
+
+2. Installation instructions
+----------------------------
+Prerequisite: the NVIDIA CUDA Toolkit 5.0 or newer.
+
+To compile the programs, run `make`. 
+Then, the executable files, Ising_2D.out, Potts_2D.out, 
+clock_2D.out, Ising_3D.out, Potts_3D.out, and clock_3D.out 
+will be made.
+
+
+3. Running test
+--------
+To test the programs, run `./test.sh`. 
+Then, the programs of Ising_2D.out, Potts_2D.out, 
+clock_2D.out, Ising_3D.out, Potts_3D.out, and clock_3D.out 
+will be executed, 
+and Ising_2D.dat, Potts_2D.dat, 
+clock_2D.dat, Ising_3D.dat, Potts_3D.dat, and clock_3D.dat 
+will be generated. The total computational time is about 
+5 minutes on the NVIDIA Tesla K20X.
+
+
+4. Checking result
+--------
+The results for the parameters used in the sample programs 
+are shown in the directly of "./output/". 
+
+
+5. Usage
+--------
+Run the program, ./Ising_2D.out, for example, on the system 
+with an NVIDIA CUDA enabled GPU. 
+
+The system size "nx" and the number of states "q" (in the case of Potts model 
+and clock model) are given, and these parameters can be changed. 
+The other parameters are the number of MCS for discard, "mcs1", 
+and the number of MCS for measurement, "mcs2". 
+The temperatures are given with the starting temperature, "tstart", 
+the unit for increasing temperature, "tunit", and the number of 
+measuring temperature, "tnum". 
+The parameter for the seed of the random-number sequence is given as "iri1".
+We use the NVIDIA CUDA Random Number Generation library (cuRAND)
+
+For the cluster-labeling algorithm, the algorithm by Hawick et al. [3] 
+("algorithm"=0), that by Kalentev et al. [4] ("algorithm"=1), 
+and that by Komura [2] ("algorithm"=2) can be chosen.
+
+For the outputs, the 2nd moment of magnetization, the 4th moment of 
+magnetization, the energy per spin, and the specific heat per spin 
+are provided.  The computational time for spin-flip 
+and that for spin-flip plus measurement are given 
+in units of milliseconds per a single MCS.
+
+
+6. Running time
+--------
+For the parameters used in the sample programs, it takes about a minute 
+for each program.  Of course, it depends on the system size, 
+the number of Monte Carlo steps, etc.
+
+
+[1] Y. Komura and Y. Okabe, 
+    Comput. Phys. Commun. 183, 1155-1161 (2012).
+[2] Y. Komura,              
+    Comput. Phys. Commun. 194, 54-58 (2015).
+[3] K.A. Hawick, A. Leist, and D. P. Playne, 
+    Parallel Computing 36, 655-678 (2010).
+[4] O. Kalentev, A. Rai, S. Kemnitzb, and R. Schneider,
+    J. Parallel Distrib. Comput. 71, 615-620 (2011).
+

@@ -24,107 +24,80 @@
   Utils.cu
 C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Cricket.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Compiling CUDA source file BlockUtils.cu...
+  Compiling CUDA source file TexPly.cu...
   Compiling CUDA source file Ply.cu...
   Compiling CUDA source file RandPly.cu...
-  Compiling CUDA source file TexUtils.cu...
   Compiling CUDA source file Rando.cu...
-  Compiling CUDA source file TexPly.cu...
+  Compiling CUDA source file TexUtils.cu...
   Compiling CUDA source file Utils.cu...
   Compiling CUDA source file Ant.cu...
   
   C:\Users\tpnsc\source\repos\CUDA\Ant\Ant>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2015 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.1\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\BlockUtils.cu.obj "C:\Users\tpnsc\source\repos\CUDA\Ant\Ant\BlockUtils.cu" 
   
-  C:\Users\tpnsc\source\repos\CUDA\Ant\Ant>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2015 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.1\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\TexPly.cu.obj "C:\Users\tpnsc\source\repos\CUDA\Ant\Ant\TexPly.cu" 
-  
-  C:\Users\tpnsc\source\repos\CUDA\Ant\Ant>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2015 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.1\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Ply.cu.obj "C:\Users\tpnsc\source\repos\CUDA\Ant\Ant\Ply.cu" 
-  
-  C:\Users\tpnsc\source\repos\CUDA\Ant\Ant>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2015 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.1\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\TexUtils.cu.obj "C:\Users\tpnsc\source\repos\CUDA\Ant\Ant\TexUtils.cu" 
-  
   C:\Users\tpnsc\source\repos\CUDA\Ant\Ant>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2015 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.1\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\RandPly.cu.obj "C:\Users\tpnsc\source\repos\CUDA\Ant\Ant\RandPly.cu" 
   
+  
+  C:\Users\tpnsc\source\repos\CUDA\Ant\Ant>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2015 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.1\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Ply.cu.obj "C:\Users\tpnsc\source\repos\CUDA\Ant\Ant\Ply.cu" 
+  C:\Users\tpnsc\source\repos\CUDA\Ant\Ant>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2015 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.1\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\TexPly.cu.obj "C:\Users\tpnsc\source\repos\CUDA\Ant\Ant\TexPly.cu" 
+  
   C:\Users\tpnsc\source\repos\CUDA\Ant\Ant>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2015 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.1\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Rando.cu.obj "C:\Users\tpnsc\source\repos\CUDA\Ant\Ant\Rando.cu" 
+  
+  C:\Users\tpnsc\source\repos\CUDA\Ant\Ant>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2015 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.1\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\TexUtils.cu.obj "C:\Users\tpnsc\source\repos\CUDA\Ant\Ant\TexUtils.cu" 
   
   C:\Users\tpnsc\source\repos\CUDA\Ant\Ant>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2015 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.1\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Utils.cu.obj "C:\Users\tpnsc\source\repos\CUDA\Ant\Ant\Utils.cu" 
   
   C:\Users\tpnsc\source\repos\CUDA\Ant\Ant>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2015 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.1\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\Ant.cu.obj "C:\Users\tpnsc\source\repos\CUDA\Ant\Ant\Ant.cu" 
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(337): warning : variable "speed" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(338): warning : variable "noise" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(341): warning : variable "plySize" was set but never used
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(397): warning : variable "dataSize" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(408): warning : variable "dev_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(409): warning : variable "host_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(518): warning : variable "dataSize" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(526): warning : variable "dev_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(527): warning : variable "host_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(33): warning : variable "status" was set but never used
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(41): warning : variable "dataSize" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(133): warning : variable "dev_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(134): warning : variable "host_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(60): warning : variable "cudaResult" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(81): warning : variable "cudaResult" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(193): warning : variable "dev_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(194): warning : variable "host_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(27): warning : variable "cudaResult" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(49): warning : variable "cudaResult" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(168): warning : variable "dev_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(169): warning : variable "host_rands" was declared but never referenced
-  TexUtils.cu
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/BlockUtils.cu(102): error : identifier "MAX_BLOCKS_1D" is undefined
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/BlockUtils.cu(110): error : identifier "MAX_BLOCKS_2D" is undefined
   BlockUtils.cu
-  Utils.cu
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(337): warning : variable "speed" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(338): warning : variable "noise" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(341): warning : variable "plySize" was set but never used
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(397): warning : variable "dataSize" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(408): warning : variable "dev_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(409): warning : variable "host_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(518): warning : variable "dataSize" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(526): warning : variable "dev_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(527): warning : variable "host_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(60): warning : variable "cudaResult" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(81): warning : variable "cudaResult" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(193): warning : variable "dev_rands" was declared but never referenced
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(194): warning : variable "host_rands" was declared but never referenced
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\BuildCustomizations\CUDA 9.1.targets(707,9): error MSB3721: The command ""C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env --cl-version 2015 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\ProgramData\NVIDIA Corporation\CUDA Samples\v9.1\common\inc" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -o x64\Debug\BlockUtils.cu.obj "C:\Users\tpnsc\source\repos\CUDA\Ant\Ant\BlockUtils.cu"" exited with code 1.
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(27): warning : variable "cudaResult" was declared but never referenced
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(49): warning : variable "cudaResult" was declared but never referenced
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(168): warning : variable "dev_rands" was declared but never referenced
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(169): warning : variable "host_rands" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(291): warning : variable "dataSize" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(144): warning : variable "cudaResult" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(165): warning : variable "cudaResult" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(277): warning : variable "dev_rands" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(278): warning : variable "host_rands" was declared but never referenced
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(33): warning : variable "status" was set but never used
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(41): warning : variable "dataSize" was declared but never referenced
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(133): warning : variable "dev_rands" was declared but never referenced
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(134): warning : variable "host_rands" was declared but never referenced
+  TexUtils.cu
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(27): warning : variable "cudaResult" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(49): warning : variable "cudaResult" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(168): warning : variable "dev_rands" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(169): warning : variable "host_rands" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(291): warning : variable "dataSize" was declared but never referenced
+  Utils.cu
+  TexPly.cu
   RandPly.cu
   Ant.cu
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(144): warning : variable "cudaResult" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(165): warning : variable "cudaResult" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(277): warning : variable "dev_rands" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(278): warning : variable "host_rands" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(33): warning : variable "status" was set but never used
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(41): warning : variable "dataSize" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(133): warning : variable "dev_rands" was declared but never referenced
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(134): warning : variable "host_rands" was declared but never referenced
   Ply.cu
-  TexPly.cu
   Rando.cu
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Utils.cu(91): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(337): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(338): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(390): warning C4305: 'argument': truncation from 'double' to 'float'
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(391): warning C4305: 'argument': truncation from 'double' to 'float'
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(409): warning C4101: 'host_rands': unreferenced local variable
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(408): warning C4101: 'dev_rands': unreferenced local variable
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(511): warning C4305: 'argument': truncation from 'double' to 'float'
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(512): warning C4305: 'argument': truncation from 'double' to 'float'
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(527): warning C4101: 'host_rands': unreferenced local variable
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(526): warning C4101: 'dev_rands': unreferenced local variable
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(149): warning C4305: 'argument': truncation from 'double' to 'float'
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(150): warning C4305: 'argument': truncation from 'double' to 'float'
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(180): warning C4305: 'argument': truncation from 'double' to 'float'
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(181): warning C4305: 'argument': truncation from 'double' to 'float'
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(194): warning C4101: 'host_rands': unreferenced local variable
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(193): warning C4101: 'dev_rands': unreferenced local variable
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(134): warning C4101: 'host_rands': unreferenced local variable
-C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(133): warning C4101: 'dev_rands': unreferenced local variable
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(124): warning C4305: 'argument': truncation from 'double' to 'float'
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(125): warning C4305: 'argument': truncation from 'double' to 'float'
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(155): warning C4305: 'argument': truncation from 'double' to 'float'
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(156): warning C4305: 'argument': truncation from 'double' to 'float'
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(169): warning C4101: 'host_rands': unreferenced local variable
 C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/TexPly.cu(168): warning C4101: 'dev_rands': unreferenced local variable
-  Ant.vcxproj -> C:\Users\tpnsc\source\repos\CUDA\Ant\x64\Debug\Ant.exe
-  Ant.vcxproj -> C:\Users\tpnsc\source\repos\CUDA\Ant\x64\Debug\Ant.pdb (Full PDB)
-  copy "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\cudart*.dll" "C:\Users\tpnsc\source\repos\CUDA\Ant\x64\Debug\"
-  C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\cudart32_91.dll
-  C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.1\bin\cudart64_91.dll
-          2 file(s) copied.
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(284): warning C4305: 'argument': truncation from 'double' to 'float'
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/RandPly.cu(285): warning C4305: 'argument': truncation from 'double' to 'float'
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(233): warning C4305: 'argument': truncation from 'double' to 'float'
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(234): warning C4305: 'argument': truncation from 'double' to 'float'
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(264): warning C4305: 'argument': truncation from 'double' to 'float'
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(265): warning C4305: 'argument': truncation from 'double' to 'float'
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(278): warning C4101: 'host_rands': unreferenced local variable
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Ply.cu(277): warning C4101: 'dev_rands': unreferenced local variable
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(134): warning C4101: 'host_rands': unreferenced local variable
+C:/Users/tpnsc/source/repos/CUDA/Ant/Ant/Rando.cu(133): warning C4101: 'dev_rands': unreferenced local variable

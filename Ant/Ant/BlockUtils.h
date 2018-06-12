@@ -2,6 +2,11 @@
 #include "cuda_runtime.h"
 #include <stdlib.h>
 
+#define MAX_BLOCKS_1D  16384
+#define MAX_BLOCKS_2D  128
+#define THREADS_1D  512
+
+
 dim3 *dim3Ctr(int x, int y = 1, int z = 1);
 dim3 *dim3Unit();
 int dim3Vol(dim3 *a);

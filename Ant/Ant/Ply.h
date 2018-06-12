@@ -4,6 +4,7 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
+
 //globals needed by the update routine
 struct Ply {
 	unsigned int area;
@@ -12,6 +13,11 @@ struct Ply {
 	float           *dev_inSrc;
 	float           *dev_outSrc;
 };
+
+__global__ void grid_local_energy(float *resOut, float *plyIn, int2 plySize);
+
+__global__ void grid_local_energyC(float *resOut, float *plyIn, int2 plySize);
+
 
 void GetPlyData(Ply *texPly, float *data_outSrc);
 
@@ -26,3 +32,9 @@ void FreePly(Ply *plyBlock);
 void RunPlyCorrectness(int argc, char **argv);
 
 void RunPlyBench(int argc, char **argv);
+
+float *PlyEnergy(Ply *ply);
+
+void RunEnergyTest(int argc, char **argv);
+
+void RunEnergyTestC(int argc, char **argv);
